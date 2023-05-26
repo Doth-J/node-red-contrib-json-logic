@@ -36,7 +36,7 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
   ![OperatorModeEdit](./docs/operator_mode_edit.png)
 
   ## Check please? :receipt:
-  In the edit dialog of the logic node there is a property called `Checkpoint`, the button next to it can be clicked to set the node to append information to the `msg.check` field about the logic rule or operation used, the result, the node's id and a timestamp of the event. 
+  In the edit dialog of the logic node there is a property called `Checkpoint`, the button next to it can be clicked to set the node to append information to the `msg.check` field about the logic rule or operation used.. 
 
   ### Rule Mode output with Checkpoint set to "`Append Check`":  
   ```json
@@ -65,3 +65,5 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
     ]
   }
   ```
+
+  The `msg.check` field becomes an Array that keeps track of the rule/operation used, it's json-logic result, the node's id and a timestamp of the event. Each logic node can be configured as a checkpoint to collect event data about the rules/operations done and will push these events into the `msg.check` table.   
