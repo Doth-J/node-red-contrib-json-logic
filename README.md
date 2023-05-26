@@ -4,7 +4,7 @@ This is a Node-RED node for working with [JsonLogic](#https://jsonlogic.com/) ru
 ## Installation :zap:
 To install the node execute the following command inside the `.node-red` directory:
 ```console
-npm install node-red-contrib-json-rule
+npm install node-red-contrib-json-logic
 ```
 
 ## Logic Node :vulcan_salute:
