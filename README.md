@@ -15,7 +15,7 @@ The logic node has two modes:
 - #### Rule
   This mode is used to apply a rule on the data given, the node evaluates the rule against the `msg.payload` and forwards the `msg` object accordingly to the `pass` and `stop` outputs. Rules defined must be *logical operations* and in *json* format:
 
-  <img src="https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode.png">
+  ![RuleMode](#https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode.png)
   
   
   [Here you can find the rule flow shown above.](#https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_node_flow.json) 
@@ -25,8 +25,7 @@ The logic node has two modes:
 - #### Operator
   This mode is used to perform custom logic operations on the fly when a `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.operation` field.
 
-  <img src="https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png" />
-  
+  ![OperatorMode](#https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png)
   
   [Here you can find the operator shown flow above.](#https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_node_flow.json)
   
@@ -35,11 +34,11 @@ The logic node has two modes:
 ## Setting the Rules :bookmark_tabs:
 The rules used by the logic node must be in `JSON` format and they can be set by editing the `Rule(s)` property on the logic node's edit dialog window. There is also an option to set the rules using a `msg` field by clicking on the dropdown next to the node's property and selecting `msg`.   
     
-  <img src="https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode_edit.png" />
+  ![RuleModeEdit](#https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode_edit.png)
 
 Same is true for when using the logic node in the `operator` mode. The `Rule(s)` property transforms to `Operation(s)` property and a **non** logical operation is expected in the input field. 
   
-  <img src="https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode_edit.png" />
+  ![OperatorModeEdit](#https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode_edit.png)
 
   ## Check please? :receipt:
   In the edit dialog of the logic node there is a property called `Checkpoint`, the button next to it can be clicked to set the node to append checkpoint event information to the `msg.checkpoints` field about the logic rule or operation used. 
