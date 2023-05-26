@@ -1,5 +1,5 @@
 # node-red-contrib-json-logic
-This is a Node-RED node for creating [JsonLogic](#https://jsonlogic.com/) in your flow.
+This is a Node-RED node for working with [JsonLogic](#https://jsonlogic.com/) rules and operations in your flow.
 
 ## Installation :zap:
 To install the node execute the following command inside the `.node-red` directory:
