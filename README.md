@@ -16,18 +16,15 @@ The logic node has two modes:
   This mode is used to apply a rule on the data given, the node evaluates the rule against the `msg.payload` and forwards the `msg` object accordingly to the `pass` and `stop` outputs. Rules defined must be *logical operations* and in *json* format:
 
   ![RuleMode](./docs/rule_mode.png)
-  [Here you can find the rule flow shown above.](./docs/rule_node_flow.json)
-
-  Check [here](#https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**
+  
+  [Here you can find the rule flow shown above.](./docs/rule_node_flow.json) Check [here](#https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**
 
 - #### Operator
   This mode is used to perform custom logic operations on the fly when a  `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.operation` field.
 
   ![OperatorMode](./docs/operator_mode.png)
-  [Here you can find the operator shown flow above.](./docs/operator_node_flow.json)
-
   
-  Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**
+  [Here you can find the operator shown flow above.](./docs/operator_node_flow.json) Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**
 
 ## Setting the Rules :bookmark_tabs:
 The rules used by the logic node must be in `JSON` format and they can be set by editing the `Rule(s)` property on the logic node's edit dialog window. There is also an option to set the rules using a `msg` field by clicking on the dropdown next to the node's property and selecting `msg`.   
