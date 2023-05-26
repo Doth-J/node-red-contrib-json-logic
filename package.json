@@ -3,7 +3,7 @@
    "author": "Doth-J",
    "description": "Node-RED node for configuring json-logic.",
    "license": "Apache-2.0",
-   "version": "0.0.5",
+   "version": "0.0.5a",
    "keywords": [
       "node-red",
       "node-inq",
@@ -12,6 +12,7 @@
       "json"
    ],
    "node-red": {
+      "version": ">=2.0.0",
       "nodes": {
          "logic": "nodes/logic.js"
       }
@@ -26,5 +27,8 @@
    },
    "dependencies": {
       "json-logic-engine": "^1.2.5"
+   },
+   "engines": {
+      "node": ">=12.0.0"
    }
 }

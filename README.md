@@ -18,7 +18,7 @@ The logic node has two modes:
   ![RuleMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode.png?raw=true)
   
   
-  [Here you can find the rule flow shown above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_node_flow.json) 
+  [Here you can find the rule flow shown above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/rule_node_flow.json) 
   
   Check [here](https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**
 
@@ -27,7 +27,7 @@ The logic node has two modes:
 
   ![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png?raw=true)
   
-  [Here you can find the operator shown flow above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_node_flow.json)
+  [Here you can find the operator shown flow above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/operator_node_flow.json)
   
   Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**
 
