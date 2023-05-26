@@ -1,0 +1,116 @@
+<script type="text/javascript" id="node-logic">
+    RED.nodes.registerType('logic',{
+        category:'function',
+        color:'#39c7b0',
+        icon:'logic.svg',
+        inputs:1,
+        inputLabels: "data",
+        outputs:2,
+        outputLabels: ["pass","stop"],
+        paletteLabel:"logic",
+        defaults: {
+            name: {value:''},
+            rule: {value:'{}',required:true},
+            ruleType: {value:'json'},
+            mode: {value:'rule'},
+            check:{value:''},
+            outputs:{value:2},
+            outputLabels:{value:[]}
+        },
+        oneditprepare:()=>{
+            $("#node-input-mode").typedInput({
+                types:[
+                    {
+                        options:[
+                            {value:"rule", label:'Rule'},
+                            {value:"operator", label:'Operator'}
+                        ]
+                    }
+                ]
+            })
+            $("#node-input-mode").change(()=>{
+                switch($("#node-input-mode").val()){
+                    case "rule":{
+                        $("#mode-desc").html(' Rule(s)')
+                        $("#node-input-outputs").val(2)
+                        break;
+                    }
+                    case "operator":{
+                        $("#mode-desc").html(' Operation(s)')
+                        $("#node-input-outputs").val(1)
+                        break;
+                    }
+                }
+            })
+            $("#node-input-rule").typedInput({
+                types: ["json","msg"],
+                typeField: "#node-input-ruleType"
+            })
+            $("#checked").on('click',()=>{
+                if(this.checked == "y"){
+                    this.checked = "n"
+                    $("#checked").html(`<i class="fa fa-minus"></i> Don't append check`)
+                }else{
+                    this.checked = "y"
+                    $("#checked").html(`<i class="fa fa-plus"></i> Append check`)
+                }
+                $("#node-input-check").val(this.checked)
+                console.log($("#node-input-mode").val())
+            })
+        },
+        label: function(){
+            return this.name || this.mode
+        }
+    });
+</script>
+<script type="text/html" data-template-name="logic">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name: </label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-gear"></i> Mode:</label>
+        <input type="text" id="node-input-mode">
+        <input type="hidden" id="node-input-outputs">
+        <input type="hidden" id="node-input-outputLabels">
+    </div>
+    <div class="form-row">
+        <label for="node-input-rule"><i class="fa fa-exclamation-circle"></i><span id="mode-desc">Rule(s):</span></label>
+        <input type="text" id="node-input-rule">
+        <input type="hidden" id="node-input-ruleType">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-flag"></i> Checkpoint:</label>
+        <button id="checked">
+            <script>
+                if($("#node-input-check").val() == "y"){
+                    $("#checked").html(`<i class="fa fa-plus"></i> Append check`)
+                }else if($("#node-input-check").val() == "n"){
+                    $("#checked").html(`<i class="fa fa-minus"></i> Don't append check`)
+                }else{
+                    $("#checked").html(`<i class="fa fa-check-square-o"></i>`)
+                }
+                </script>
+        </button>
+        <input type="hidden" id="node-input-check">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="logic">
+    <p>Rule Node-RED node</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">json</span>
+    </dt>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">json</span>
+    </dt>
+    <dt>evaluation
+        <span class="property-type">string</span>
+    </dt>
+    <h3>Details</h3>
+    <p>This node implements json-logic for creating rules and evaluating data.</p>
+</script>

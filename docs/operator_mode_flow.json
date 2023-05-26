@@ -1,0 +1,70 @@
+[
+    {
+        "id": "7a0f8994299b0583",
+        "type": "inject",
+        "z": "afe8dd0ab37ef4cb",
+        "name": "Data Payload",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "rule",
+                "v": "{\"+\":[10,{\"var\":\"number\"}]}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"number\":100,\"string\":\"World\",\"object\":{\"first\":{\"second\":{\"value\":25}}}}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 380,
+        "wires": [
+            [
+                "6b0d189cd32a9105"
+            ]
+        ]
+    },
+    {
+        "id": "6b0d189cd32a9105",
+        "type": "logic",
+        "z": "afe8dd0ab37ef4cb",
+        "name": "Operator Mode (Math)",
+        "rule": "{\"+\":[10,{\"var\":\"object.first.second.value\"}]}",
+        "ruleType": "json",
+        "mode": "operator",
+        "check": "y",
+        "outputs": 1,
+        "outputLabels": [
+            ""
+        ],
+        "x": 400,
+        "y": 380,
+        "wires": [
+            [
+                "c3c76ded2bf89cb7"
+            ]
+        ]
+    },
+    {
+        "id": "c3c76ded2bf89cb7",
+        "type": "debug",
+        "z": "afe8dd0ab37ef4cb",
+        "name": "RESULT (Math)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 380,
+        "wires": []
+    }
+]
