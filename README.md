@@ -12,7 +12,7 @@ The `logic` node utilizes the [json-logic-engine](#https://jessemitchell.me/json
 
 ## Using the Logic Node :wrench:
 The logic node has two modes:
-- #### Rule
+- ### Rule Mode
   This mode is used to apply a rule on the data given, the node evaluates the rule against the `msg.payload` and forwards the `msg` object accordingly to the `pass` and `stop` outputs. Rules defined must be *logical operations* and in *json* format:
 
   ![RuleMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode.png?raw=true)
@@ -20,16 +20,16 @@ The logic node has two modes:
   
   [Here you can find the rule flow shown above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/rule_node_flow.json) 
   
-  Check [here](https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**
+  Check [here](https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**.
 
-- #### Operator
+- ### Operator Mode
   This mode is used to perform custom logic operations on the fly when a `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.operation` field.
 
   ![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png?raw=true)
   
   [Here you can find the operator shown flow above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/operator_node_flow.json)
   
-  Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**
+  Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**.
 
 ## Setting the Rules :bookmark_tabs:
 The rules used by the logic node must be in `JSON` format and they can be set by editing the `Rule(s)` property on the logic node's edit dialog window. There is also an option to set the rules using a `msg` field by clicking on the dropdown next to the node's property and selecting `msg`.   
@@ -43,7 +43,7 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
   ## Check please? :receipt:
   In the edit dialog of the logic node there is a property called `Checkpoint`, the button next to it can be clicked to set the node to append checkpoint event information to the `msg.checkpoints` field about the logic rule or operation used. 
 
-  ### Rule Mode output with Checkpoint set to "`Append Check`":  
+  ### Operator Mode output with Checkpoint property set to "`Append Check`":  
   ```json
   {
     "_msgid":"c8a5c57cb82e2998",

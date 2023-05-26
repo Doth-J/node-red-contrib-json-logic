@@ -1,5 +1,5 @@
 <script type="text/javascript" id="node-logic">
-    RED.nodes.registerType('logic',{
+    RED.nodes.registerType('jsonlogic',{
         category:'function',
         color:'#39c7b0',
         icon:'logic.svg',
@@ -7,7 +7,6 @@
         inputLabels: "data",
         outputs:2,
         outputLabels: ["pass","stop"],
-        paletteLabel:"json-logic",
         defaults: {
             name: {value:''},
             rule: {value:'{}',required:true},
@@ -63,7 +62,7 @@
         }
     });
 </script>
-<script type="text/html" data-template-name="logic">
+<script type="text/html" data-template-name="jsonlogic">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name: </label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -96,7 +95,7 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="logic">
+<script type="text/html" data-help-name="jsonlogic">
     <p>Rule Node-RED node</p>
     <h3>Inputs</h3>
     <dl class="message-properties">

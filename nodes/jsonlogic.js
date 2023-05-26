@@ -33,5 +33,5 @@ module.exports = function (RED) {
                 done();
         });
     }
-    RED.nodes.registerType('logic', LogicNode);
+    RED.nodes.registerType('jsonlogic', LogicNode);
 };

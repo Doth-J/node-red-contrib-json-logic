@@ -1,4 +1,3 @@
-import * as logic from "json-logic-engine";
 import { LogicEngine } from 'json-logic-engine'
 import * as NodeRED from "node-red";
 
@@ -8,7 +7,6 @@ interface LogicNodeConfig extends NodeRED.NodeDef{
   ruleType:string,
   check:string
 }
-
 
 export = function(RED:NodeRED.NodeAPI){
 
@@ -44,6 +42,6 @@ export = function(RED:NodeRED.NodeAPI){
       });
     }
 
-    RED.nodes.registerType('logic',LogicNode);
+    RED.nodes.registerType('jsonlogic',LogicNode);
       
 }
