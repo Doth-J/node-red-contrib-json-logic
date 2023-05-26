@@ -27,7 +27,7 @@ The logic node has two modes:
 
   ![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png?raw=true)
   
-  [Here you can find the operator shown flow above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/operator_node_flow.json)
+  [Here you can find the math operator flow shown above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/operator_node_flow.json)
   
   Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**.
 
