@@ -24,7 +24,7 @@ The logic node has two modes:
 
   ![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png)
   
-  [Here you can find the operator shown flow above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_node_flow.json) Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**
+  [Here you can find the operator shown flow above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_node_flow.json) Check [here](#https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**
 
 ## Setting the Rules :bookmark_tabs:
 The rules used by the logic node must be in `JSON` format and they can be set by editing the `Rule(s)` property on the logic node's edit dialog window. There is also an option to set the rules using a `msg` field by clicking on the dropdown next to the node's property and selecting `msg`.   
