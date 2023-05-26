@@ -15,12 +15,12 @@ The logic node has two modes:
 - #### Rule
   This mode is used to apply a rule on the data given, the node evaluates the rule against the `msg.payload` and forwards the `msg` object accordingly to the `pass` and `stop` outputs. Rules defined must be *logical operations* and in *json* format:
 
-  ![RuleMode](#https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode.png)
+  ![RuleMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode.png)
   
   
-  [Here you can find the rule flow shown above.](#https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_node_flow.json) 
+  [Here you can find the rule flow shown above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_node_flow.json) 
   
-  Check [here](#https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**
+  Check [here](https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**
 
 - #### Operator
   This mode is used to perform custom logic operations on the fly when a `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.operation` field.
