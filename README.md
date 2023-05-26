@@ -20,7 +20,7 @@ The logic node has two modes:
   [Here you can find the rule flow shown above.](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_node_flow.json) Check [here](#https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**
 
 - #### Operator
-  This mode is used to perform custom logic operations on the fly when a  `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.operation` field.
+  This mode is used to perform custom logic operations on the fly when a `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.operation` field.
 
   ![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png)
   
@@ -31,12 +31,12 @@ The rules used by the logic node must be in `JSON` format and they can be set by
     
   ![RuleModeEdit](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode_edit.png)
 
-Same is true for when using the logic node in the `operator` mode. The `Rule(s)` property transforms to `Operation(s)` property and a **non** logical operation is expected in the input field 
+Same is true for when using the logic node in the `operator` mode. The `Rule(s)` property transforms to `Operation(s)` property and a **non** logical operation is expected in the input field. 
   
   ![OperatorModeEdit](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode_edit.png)
 
   ## Check please? :receipt:
-  In the edit dialog of the logic node there is a property called `Checkpoint`, the button next to it can be clicked to set the node to append information to the `msg.check` field about the logic rule or operation used.. 
+  In the edit dialog of the logic node there is a property called `Checkpoint`, the button next to it can be clicked to set the node to append checkpoint event information to the `msg.checkpoints` field about the logic rule or operation used. 
 
   ### Rule Mode output with Checkpoint set to "`Append Check`":  
   ```json
@@ -50,7 +50,7 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
         "first":{
           "value":25  
       }}},
-    "check":[
+    "checkpoints":[
       {
         "id":"6b0d189cd32a9105",
         "rule":{
@@ -66,4 +66,4 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
   }
   ```
 
-  The `msg.check` field becomes an Array that keeps track of the rule/operation used, it's json-logic result, the node's id and a timestamp of the event. Each logic node can be configured as a checkpoint to collect event data about the rules/operations done and will push these events into the `msg.check` table.   
+  The `msg.checkpoints` field is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the node's id and a timestamp for the checkpoint event. Each logic node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   

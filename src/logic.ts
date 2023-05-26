@@ -23,9 +23,9 @@ export = function(RED:NodeRED.NodeAPI){
         }
         const operation = engine.run(options.rule,options.data);
         if(config.check=='y'){
-          Array.isArray(msg.check) && msg.check.length > 0 ? 
-            msg.check.push({id:config.id,rule:options.rule,result:operation,timestamp:new Date(Date.now()).toString()}) :
-            msg.check = new Array({id:config.id,rule:options.rule,result:operation,timestamp:new Date(Date.now()).toString()})  
+          Array.isArray(msg.checkpoints) && msg.checkpoints.length > 0 ? 
+            msg.checkpoints.push({id:config.id,rule:options.rule,result:operation,timestamp:new Date(Date.now()).toString()}) :
+            msg.checkpoints = new Array({id:config.id,rule:options.rule,result:operation,timestamp:new Date(Date.now()).toString()})  
         }
         switch(config.mode){
           case "rule":{
