@@ -23,7 +23,7 @@ The logic node has two modes:
   Check [here](https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**.
 
 - ### Operator Mode
-  This mode is used to perform custom logic operations on the fly when a `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.operation` field.
+  This mode is used to perform custom logic operations on the fly when a `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.result` field.
 
   ![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png?raw=true)
   
@@ -71,4 +71,4 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
   }
   ```
 
-  The `msg.checkpoints` field is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the node's id and a timestamp for the checkpoint event. Each logic node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   
+  The `msg.checkpoints` field is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the node's mode, it's id and a timestamp for the checkpoint event. Each logic node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   
