@@ -7,7 +7,10 @@
    "repository": {
       "type": "git",
       "url": "https://github.com/Doth-J/node-red-contrib-json-logic"
-  },
+   },
+  "publishConfig": {
+   "registry": "https://npm.pkg.github.com"
+   },
    "keywords": [
       "node-red",
       "node-inq",
