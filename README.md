@@ -8,7 +8,7 @@ npm install node-red-contrib-json-logic
 ```
 
 ## Logic Node :vulcan_salute:
-The `logic` node utilizes the [json-logic-engine](#https://jessemitchell.me/json-logic-engine/) which makes it easy to write safe instructions for evaluating and operating on `json` data. These instructions can be persisted into a database, and shared between the front-end and back-end. This works very similarl to having an *access control list* for the data traversing through your flow, if the node is set to [`rule mode`](#rule), or applying custom logic to your json data, if the node is set to [`operator mode`](#rule).
+The `logic` node utilizes the [json-logic-engine](#https://jessemitchell.me/json-logic-engine/) which makes it easy to write safe instructions for evaluating and operating on `json` data. These instructions can be persisted into a database, and shared between the front-end and back-end. This works very similarl to having an *access control list* for the data traversing through your flow, if the node is set to [`rule mode`](#rule-mode), or applying custom logic to your json data, if the node is set to [`operator mode`](#operator-mode).
 
 ## Using the Logic Node :wrench:
 The logic node has two modes:
