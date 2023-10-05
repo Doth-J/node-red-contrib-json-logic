@@ -5,30 +5,28 @@ module.exports = function (RED) {
         RED.nodes.createNode(this, config);
         const engine = new json_logic_engine_1.LogicEngine();
         this.on('input', (msg, send, done) => {
-            const options = {
-                mode: config.mode,
-                rule: config.ruleType == 'msg' ? msg[config.rule] : JSON.parse(config.rule),
-                data: msg.payload,
-            };
-            const operation = engine.run(options.rule, options.data);
+            this.status({});
+            const rule = config.ruleType == 'msg' ? msg[config.rule] : JSON.parse(config.rule);
+            const result = engine.run(rule, msg.payload);
             if (config.check == 'y') {
                 Array.isArray(msg.checkpoints) && msg.checkpoints.length > 0 ?
-                    msg.checkpoints.push({ id: config.id, rule: options.rule, result: operation, timestamp: new Date(Date.now()).toString() }) :
-                    msg.checkpoints = new Array({ id: config.id, rule: options.rule, result: operation, timestamp: new Date(Date.now()).toString() });
+                    msg.checkpoints.push({ id: config.id, mode: config.mode, rule: rule, result: result, timestamp: new Date(Date.now()).toString() }) :
+                    msg.checkpoints = new Array({ id: config.id, mode: config.mode, rule: rule, result: result, timestamp: new Date(Date.now()).toString() });
             }
             switch (config.mode) {
                 case "rule": {
-                    typeof operation == 'boolean' ?
-                        operation ? send([msg, null]) : send([null, msg]) :
+                    typeof result == 'boolean' ?
+                        result ? send([msg, null]) : send([null, msg]) :
                         this.warn('Rule must be a logical operator!');
                     break;
                 }
                 case "operator": {
-                    typeof operation != 'boolean' ? send(Object.assign({ result: operation }, msg)) :
+                    typeof result != 'boolean' ? send(Object.assign({ result: result }, msg)) :
                         this.warn('Operation must not be a logical operator!');
                     break;
                 }
             }
+            this.status({ fill: result ? "green" : "red", shape: "dot", text: result ? "passed" : "failed" });
             if (done)
                 done();
         });

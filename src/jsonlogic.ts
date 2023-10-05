@@ -14,6 +14,7 @@ export = function(RED:NodeRED.NodeAPI){
       RED.nodes.createNode(this,config);
       const engine = new LogicEngine()
       this.on('input',(msg:any,send,done)=>{
+        this.status({});
         const rule = config.ruleType == 'msg' ? msg[config.rule] : JSON.parse(config.rule);
         const result = engine.run(rule,msg.payload);
         if(config.check=='y'){
@@ -34,6 +35,7 @@ export = function(RED:NodeRED.NodeAPI){
             break;
           }
         }
+        this.status({fill:result?"green":"red",shape:"dot",text:result?"passed":"failed"})
         if(done) done();
       });
     }

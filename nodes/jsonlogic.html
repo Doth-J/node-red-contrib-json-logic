@@ -6,13 +6,13 @@
         inputs:1,
         inputLabels: "data",
         outputs:2,
-        outputLabels: ["pass","stop"],
+        outputLabels: ["pass","fail"],
         defaults: {
             name: {value:''},
             rule: {value:'{}',required:true},
             ruleType: {value:'json'},
             mode: {value:'rule'},
-            check:{value:''},
+            check:{value:false},
             outputs:{value:2},
             outputLabels:{value:[]}
         },
@@ -80,18 +80,16 @@
     </div>
     <div class="form-row">
         <label for="node-input-mode"><i class="fa fa-flag"></i> Checkpoint:</label>
-        <button id="checked">
+        <!-- <button id="checked">
             <script>
-                if($("#node-input-check").val() == "y"){
+                if($("#node-input-check").val()){
                     $("#checked").html(`<i class="fa fa-plus"></i> Append check`)
-                }else if($("#node-input-check").val() == "n"){
+                }else {
                     $("#checked").html(`<i class="fa fa-minus"></i> Don't append check`)
-                }else{
-                    $("#checked").html(`<i class="fa fa-check-square-o"></i>`)
                 }
                 </script>
-        </button>
-        <input type="hidden" id="node-input-check">
+        </button> -->
+        <input type="checkbox" id="node-input-check">
     </div>
 </script>
 
