@@ -13,7 +13,7 @@ The `logic` node utilizes the [json-logic-engine](https://jessemitchell.me/json-
 ## Using the Logic Node :wrench:
 The logic node has two modes:
 - ### Rule Mode
-  This mode is used to apply a rule on the data given, the node evaluates the rule against the `msg.payload` and forwards the `msg` object accordingly to the `pass` and `stop` outputs. Rules defined must be *logical operations* and in *json* format:
+  This mode is used to apply a rule on the data given, the node evaluates the rule against the `msg.payload` and forwards the `msg` object accordingly to the `pass` and `fail` outputs. Rules defined must be *logical operations* and in *json* format:
 
   ![RuleMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode.png?raw=true)
   

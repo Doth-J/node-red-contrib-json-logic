@@ -8,7 +8,7 @@ module.exports = function (RED) {
             this.status({});
             const rule = config.ruleType == 'msg' ? msg[config.rule] : JSON.parse(config.rule);
             const result = engine.run(rule, msg.payload);
-            if (config.check == 'y') {
+            if (config.check) {
                 Array.isArray(msg.checkpoints) && msg.checkpoints.length > 0 ?
                     msg.checkpoints.push({ id: config.id, mode: config.mode, rule: rule, result: result, timestamp: new Date(Date.now()).toString() }) :
                     msg.checkpoints = new Array({ id: config.id, mode: config.mode, rule: rule, result: result, timestamp: new Date(Date.now()).toString() });
@@ -26,7 +26,7 @@ module.exports = function (RED) {
                     break;
                 }
             }
-            this.status({ fill: result ? "green" : "red", shape: "dot", text: result ? "passed" : "failed" });
+            this.status({ fill: result ? "green" : "red", shape: "dot", text: result ? "Pass" : "Fail" });
             if (done)
                 done();
         });
