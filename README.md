@@ -10,22 +10,6 @@ npm install node-red-contrib-json-logic
 ## Logic Node 🖖
 The `logic` node utilizes the [json-logic-engine](https://jessemitchell.me/json-logic-engine/) which makes it easy to write safe instructions for evaluating and operating on `json` data. These instructions can be persisted into a database, and shared between the front-end and back-end. This works very similar to having *access control lists* for the data traversing through your flow, if the node is set to [`rule mode`](#rule-mode), or applying custom logic to your json data, if the node is set to [`operator mode`](#operator-mode).
 
-## Configuring the Logic Engine ⚙️
-  
-  ![ConfigEngine](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_engine.png?raw=true) 
-
-The config node is implemented to share the engine instance between logic nodes. This way your logic nodes can access the same `Logic Engine` instance across your flows for the rules and operations they perform.
-
-### Adding Methods 🔩
-The configuration node allows you to set the name (*optional*) and allows you to add new methods to the `Logic Engine`. The editor inside the config node gives you access to an **engine** variable that contains the instance of the `Logic Engine`.  
-
-  [![ConfigMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_methods.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
-
-  [![CustomMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_custom_methods.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
-  
-  [![CustomMethodsFlow](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/custom_methods_flow.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
-
-
 ## Using the Logic Node 🔧
 The logic node provides two modes of usage:
 - ### Rule Mode
@@ -43,6 +27,21 @@ The logic node provides two modes of usage:
   Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**.
 
 You also can import this [example flow](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/example_flow.json) which utilizes both node modes.
+
+## Configuring the Logic Engine ⚙️
+  
+  ![ConfigEngine](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_engine.png?raw=true) 
+
+The config node is implemented to share the engine instance between logic nodes. This way your logic nodes can access the same `Logic Engine` instance across your flows for the rules and operations they perform.
+
+### Adding Methods 🔩
+The configuration node allows you to set the name (*optional*) and allows you to add new methods to the `Logic Engine`. The editor inside the config node gives you access to an **engine** variable that contains the instance of the `Logic Engine`.  
+
+  [![ConfigMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_methods.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
+
+  [![CustomMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_custom_methods.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
+  
+  [![CustomMethodsFlow](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/custom_methods_flow.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
 
 ## Setting the Rules 📑
 The rules used by the logic node must be in `JSON` format and they can be set by editing the `Rule(s)` property on the logic node's edit dialog window. There are also other options to set the rules/operation using the `type` field and choosing from the dropdown (*`json`* ,*`msg`* ,*`flow`* ,*`global`* ,*`env`*,).   
