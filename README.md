@@ -21,8 +21,6 @@ The configuration node allows you to set the name (*optional*) and allows you to
 
   [![ConfigMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_methods.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
 
-Utilize the customized engine on any of your logic nodes, applying the methods you developed:
-
   [![CustomMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_custom_methods.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
   
   [![CustomMethodsFlow](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/custom_methods_flow.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
