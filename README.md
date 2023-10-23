@@ -56,7 +56,7 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
 
   ![CheckpointProperty](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/checkpoint_edit.png?raw=true)
 
-  ### Operator Mode node with Checkpoint property checked:  
+  * Operator Mode with Checkpoint:  
   ```json
 {
     "_msgid":"2a7c3f3134e4ed25",
@@ -65,7 +65,8 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
     },
     "checkpoints":[
         {
-            "id":"23b26db68d74a983",
+            "id": "5d24464cdecdd106",
+            "engine": "6d021524792f5088",
             "mode":"operator",
             "operator":{
                 "+":[
@@ -75,6 +76,7 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
                     10
                 ]
             },
+            "data":"msg.payload",
             "result":20,
             "message":"Operation Check",
             "timestamp":"Mon Oct 23 2023 17:34:36 GMT+0300 (Eastern European Summer Time)"
@@ -82,5 +84,32 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
     ]
 }
   ```
+* Rule Mode with Checkpoint:
+```json
+{
+    "_msgid":"6649bef2e8755413",
+    "payload":{
+        "number":10
+    },
+    "checkpoints":[
+        {
+            "id":"b66841c73ecb0ff4",
+            "engine":"54d129555b731d34",
+            "mode":"rule",
+            "rule":{
+                "==":[
+                    {
+                        "var":"number"
+                    },
+                    10
+                ]
+            },
+            "data":"msg.payload",
+            "result":true,
+            "timestamp":"Tue Oct 24 2023 00:30:40 GMT+0300 (Eastern European Summer Time)"
+        }
+    ]
+}
+```
 
-  The `msg.checkpoints` is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the node's id and mode, an optional message and a timestamp for the checkpoint event. Each logic node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   
+  The `msg.checkpoints` is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the logic node's id, mode and engine id, an optional message and a timestamp for the checkpoint event. Each logic node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   

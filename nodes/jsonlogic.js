@@ -65,6 +65,7 @@ module.exports = function (RED) {
             if (config.checkpoint) {
                 const checkpoint = {
                     id: config.id,
+                    engine: configNode.id,
                     mode: config.mode,
                     [config.mode]: rule,
                     data: config.dataType + "." + config.data,
