@@ -22,11 +22,9 @@ The logic node provides two modes of usage:
 - ### Operator Mode
   This mode is used to perform custom logic operations when a `msg.payload` is inbound, the node evaluates the operation, adding it to the `msg.result` field.
 
-  [![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator.png?raw=true)](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/operator_mode_flow.json)
+  [![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_m.png?raw=true)](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/operator_mode_flow.json)
   
   Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**.
-
-You also can import this [example flow](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/example_flow.json) which utilizes both node modes.
 
 ## Configuring the Logic Engine ⚙️
   
@@ -46,7 +44,7 @@ The configuration node allows you to set the name (*optional*) and allows you to
 ## Setting the Rules 📑
 The rules used by the logic node must be in `JSON` format and they can be set by editing the `Rule(s)` property on the logic node's edit dialog window. There are also other options to set the rules/operation using the `type` field and choosing from the dropdown (*`json`* ,*`msg`* ,*`flow`* ,*`global`* ,*`env`*,).   
     
-  ![RuleModeProperties](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_props.png?raw=true)
+  ![RuleModeProperties](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_prop.png?raw=true)
 
 Same is true for when using the logic node in the `operator` mode. The `Rule(s)` property transforms to `Operation(s)` property and a **non** logical operation is expected in the input field. 
   
