@@ -3,7 +3,7 @@
    "author": "doth-j",
    "description": "Node-RED node utlizing json-logic rules & operations.",
    "license": "Apache-2.0",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "repository": {
       "type": "git",
       "url": "https://github.com/Doth-J/node-red-contrib-json-logic"
