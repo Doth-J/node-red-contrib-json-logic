@@ -1,0 +1,6 @@
+{
+    "watch": ["incubator","nodes"],
+    "ext": ".js,.html",
+    "ignore": [],
+    "exec": "node incubator/server.js"
+}

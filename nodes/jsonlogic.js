@@ -1,32 +1,84 @@
 "use strict";
 const json_logic_engine_1 = require("json-logic-engine");
 module.exports = function (RED) {
+    function LogicEngineNode(config) {
+        RED.nodes.createNode(this, config);
+        this.engine = new json_logic_engine_1.LogicEngine();
+        if (config.methods) {
+            try {
+                const methodsFunction = new Function('engine', config.methods);
+                methodsFunction(this.engine);
+            }
+            catch (err) {
+                this.error(err);
+            }
+        }
+    }
+    RED.nodes.registerType('logic_engine', LogicEngineNode);
     function LogicNode(config) {
         RED.nodes.createNode(this, config);
-        const engine = new json_logic_engine_1.LogicEngine();
+        // const engine = new LogicEngine()
         this.on('input', (msg, send, done) => {
             this.status({});
-            const rule = config.ruleType == 'msg' ? msg[config.rule] : JSON.parse(config.rule);
-            const result = engine.run(rule, msg.payload);
-            if (config.check) {
+            const configNode = RED.nodes.getNode(config.engine), engine = configNode.engine, getRule = () => {
+                let rule;
+                switch (config.ruleType) {
+                    case "json": {
+                        rule = config.rule;
+                        break;
+                    }
+                    case "msg": {
+                        rule = config.rule.split(".").reduce((path, curr) => path[curr], msg);
+                        break;
+                    }
+                    case "flow": {
+                        rule = this.context().flow.get(config.rule);
+                        break;
+                    }
+                    case "global": {
+                        rule = this.context().global.get(config.rule);
+                        break;
+                    }
+                    case "env": {
+                        rule = RED.util.evaluateNodeProperty(config.rule, config.ruleType, this, msg);
+                        break;
+                    }
+                }
+                return typeof rule == "string" ? JSON.parse(rule) : rule;
+            }, rule = getRule(), result = engine.run(rule, msg.payload);
+            if (config.checkpoint) {
+                const checkpoint = {
+                    id: config.id,
+                    mode: config.mode,
+                    [config.mode]: rule,
+                    result: result,
+                    timestamp: new Date(Date.now()).toString()
+                };
+                if (config.checkpointMessage)
+                    Object.assign(checkpoint, { message: config.checkpointMessage });
                 Array.isArray(msg.checkpoints) && msg.checkpoints.length > 0 ?
-                    msg.checkpoints.push({ id: config.id, mode: config.mode, rule: rule, result: result, timestamp: new Date(Date.now()).toString() }) :
-                    msg.checkpoints = new Array({ id: config.id, mode: config.mode, rule: rule, result: result, timestamp: new Date(Date.now()).toString() });
+                    msg.checkpoints.push(checkpoint) :
+                    msg.checkpoints = new Array(checkpoint);
             }
-            switch (config.mode) {
-                case "rule": {
-                    typeof result == 'boolean' ?
-                        result ? send([msg, null]) : send([null, msg]) :
-                        this.warn('Rule must be a logical operator!');
-                    break;
+            if (config.mode == "rule") {
+                if (typeof result == 'boolean') {
+                    result ? send([msg, null]) : send([null, msg]);
+                    this.status({ fill: result ? "green" : "red", shape: "dot", text: result ? "Pass" : "Fail" });
                 }
-                case "operator": {
-                    typeof result != 'boolean' ? send(Object.assign({ result: result }, msg)) :
-                        this.warn('Operation must not be a logical operator!');
-                    break;
+                else {
+                    this.error('Rule must be a logical operator!');
                 }
             }
-            this.status({ fill: result ? "green" : "red", shape: "dot", text: result ? "Pass" : "Fail" });
+            if (config.mode == "operator") {
+                if (typeof result != 'boolean') {
+                    msg.payload.result = result;
+                    send(msg);
+                    this.status({ fill: "blue", shape: "dot", text: result });
+                }
+                else {
+                    this.error('Operation must be non-logical operator!');
+                }
+            }
             if (done)
                 done();
         });
