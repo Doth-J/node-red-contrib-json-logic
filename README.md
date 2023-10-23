@@ -16,9 +16,11 @@ A configuration node for the logic node's `Logic Engine` is provided to share th
   ![ConfigEngine](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_engine.png?raw=true) 
 
 ### Adding Methods :nut_and_bolt:
-The configuration node allows you to set the name (*optional*) and allows you to add new methods to the `Logic Engine`. The editor inside the `Logic Engine` config node gives you access to an **engine** variable that contains the instance of the `Logic Engine`. 
+The configuration node allows you to set the name (*optional*) and allows you to add new methods to the `Logic Engine`. 
 
   [![ConfigMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_methods.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
+
+The editor inside the `Logic Engine` config node gives you access to an **engine** variable that contains the instance of the `Logic Engine`. 
 
 ## Using the Logic Node :wrench:
 The logic node provides two modes od usage:
