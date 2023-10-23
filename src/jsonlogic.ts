@@ -1,6 +1,5 @@
 import { LogicEngine } from 'json-logic-engine'
 import * as NodeRED from "node-red";
-import { env } from 'process';
 
 interface LogicEngineNodeConfig extends NodeRED.NodeDef{
   engine: LogicEngine,
@@ -10,6 +9,8 @@ interface LogicEngineNodeConfig extends NodeRED.NodeDef{
 interface LogicNodeConfig extends NodeRED.NodeDef{
   engine:string,
   mode:string,
+  data:string,
+  dataType:string,
   rule:string,
   ruleType:string,
   checkpoint:boolean,
@@ -35,11 +36,29 @@ export = function(RED:NodeRED.NodeAPI){
 
     function LogicNode(this:NodeRED.Node, config:LogicNodeConfig){
       RED.nodes.createNode(this,config);
-      // const engine = new LogicEngine()
       this.on('input',(msg:any,send,done)=>{
         this.status({});
         const configNode = RED.nodes.getNode(config.engine) as any as LogicEngineNodeConfig, 
               engine = configNode.engine,
+              getData = () => {
+                let data;  
+                switch(config.dataType){
+                  case "msg":{
+                    data = config.data.split(".").reduce((path,curr)=>path[curr],msg);
+                    break;
+                  }
+                  case "flow":{
+                    data = this.context().flow.get(config.data);
+                    break;
+                  }
+                  case "global":{
+                    data = this.context().global.get(config.data);
+                    break;
+                  }
+                }
+                return typeof data == "string" ? JSON.parse(data) : data
+              },
+              data = getData(),
               getRule = () => {
                 let rule;  
                 switch(config.ruleType){
@@ -67,13 +86,14 @@ export = function(RED:NodeRED.NodeAPI){
                 return typeof rule == "string" ? JSON.parse(rule) : rule
               }, 
               rule = getRule(),
-              result = engine.run(rule,msg.payload);
+              result = engine.run(rule,data);
 
         if(config.checkpoint){
           const checkpoint = {
             id:config.id,
             mode:config.mode,
             [config.mode]:rule,
+            data:config.dataType+"."+config.data,
             result:result,
             timestamp:new Date(Date.now()).toString()
           }
@@ -88,13 +108,13 @@ export = function(RED:NodeRED.NodeAPI){
             result ? send([msg,null]) : send([null,msg]);
             this.status({fill:result?"green":"red",shape:"dot",text:result?"Pass":"Fail"})
           }else{
-            this.error('Rule must be a logical operator!')
+            this.error('Rule must be logical operator!')
           }
         }
 
         if(config.mode == "operator"){
           if(typeof result != 'boolean'){
-            msg.payload.result = result;
+            msg.result = result;
             send(msg)
             this.status({fill:"blue",shape:"dot",text:result})
           }else{

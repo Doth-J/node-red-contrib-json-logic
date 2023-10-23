@@ -1,6 +1,6 @@
 [
     {
-        "id": "627b095aea0ffef8",
+        "id": "767213299db591c1",
         "type": "tab",
         "label": "Operator Mode",
         "disabled": false,
@@ -8,20 +8,13 @@
         "env": []
     },
     {
-        "id": "7a0f8994299b0583",
+        "id": "cf4b663bc552e8b6",
         "type": "inject",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Math Injector",
         "props": [
             {
-                "p": "payload.a",
-                "v": "12",
-                "vt": "num"
-            },
-            {
-                "p": "payload.b",
-                "v": "3",
-                "vt": "num"
+                "p": "payload"
             }
         ],
         "repeat": "",
@@ -29,26 +22,28 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
+        "payload": "{\"a\":12,\"b\":3}",
+        "payloadType": "json",
         "x": 290,
         "y": 280,
         "wires": [
             [
-                "882e8cc3ad3b84c3",
-                "6db80ce8b6984c4c",
-                "47db2ad9e8d70ae3",
-                "8992a15f62d840a0",
-                "9c3c15d6823d3f1b",
-                "a64ce767f9eb3002",
-                "c9906224f0f56fa4"
+                "c0e4e3a8ba597e9e",
+                "7c0e396996cb45ef",
+                "99893bb359cf1287",
+                "ed7ded4f8f5fc2c2",
+                "418af9fd9cfb8096",
+                "1f9eca690ca73cd9",
+                "7f81999aa5cfc1ef"
             ]
         ]
     },
     {
-        "id": "c3c76ded2bf89cb7",
+        "id": "a6298111ee151d45",
         "type": "debug",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "RESULT (Math)",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -61,12 +56,14 @@
         "wires": []
     },
     {
-        "id": "882e8cc3ad3b84c3",
+        "id": "c0e4e3a8ba597e9e",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Addition",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"+\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -76,14 +73,14 @@
         "y": 100,
         "wires": [
             [
-                "c3c76ded2bf89cb7"
+                "a6298111ee151d45"
             ]
         ]
     },
     {
-        "id": "e7002f16a97127fd",
+        "id": "960aa030c077c95c",
         "type": "comment",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Math Operations Test",
         "info": "https://jessemitchell.me/json-logic-engine/docs/math/",
         "x": 260,
@@ -91,9 +88,9 @@
         "wires": []
     },
     {
-        "id": "934cc0ef61e92b55",
+        "id": "12b8e9dad7db9f35",
         "type": "inject",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "String Injector",
         "props": [
             {
@@ -105,22 +102,22 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "World",
-        "payloadType": "str",
+        "payload": "{\"string\":\"World\"}",
+        "payloadType": "json",
         "x": 290,
         "y": 580,
         "wires": [
             [
-                "ba29710c2e3e7bec",
-                "c4b28b28d20f0489",
-                "6309d0d764e1f329"
+                "0460f79a92f2f72f",
+                "325ad03e20092f86",
+                "5374dfee4c1090b5"
             ]
         ]
     },
     {
-        "id": "1b2ee502b64faffd",
+        "id": "c01c07ba32b7bf80",
         "type": "debug",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "RESULT (String)",
         "active": true,
         "tosidebar": true,
@@ -135,13 +132,15 @@
         "wires": []
     },
     {
-        "id": "ba29710c2e3e7bec",
+        "id": "0460f79a92f2f72f",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Concatenation",
         "engine": "54d129555b731d34",
         "mode": "operator",
-        "rule": "{\"cat\":[\"Hello \",{\"var\":\"\"}, \"!\"]}",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"cat\":[\"Hello \",{\"var\":\"string\"}, \"!\"]}",
         "ruleType": "json",
         "checkpoint": true,
         "checkpointMessage": "",
@@ -150,14 +149,14 @@
         "y": 580,
         "wires": [
             [
-                "1b2ee502b64faffd"
+                "c01c07ba32b7bf80"
             ]
         ]
     },
     {
-        "id": "fab7df1945a2230d",
+        "id": "c8e1316eaebf21e8",
         "type": "comment",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "String Operations Test",
         "info": "https://jessemitchell.me/json-logic-engine/docs/string",
         "x": 260,
@@ -165,9 +164,9 @@
         "wires": []
     },
     {
-        "id": "f17b057f8241772a",
+        "id": "fd0348f5f26fe4a8",
         "type": "inject",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Array Injector",
         "props": [
             {
@@ -185,16 +184,16 @@
         "y": 760,
         "wires": [
             [
-                "f5e3d1dce238048e",
-                "73356556df5e5645",
-                "6f225133c5e86b81"
+                "d7b98065d899a51d",
+                "386ff61479083b83",
+                "c4d6e9506a27f93c"
             ]
         ]
     },
     {
-        "id": "d1f91e699f76ee96",
+        "id": "637a902500d15402",
         "type": "debug",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "RESULT (Array)",
         "active": true,
         "tosidebar": true,
@@ -209,12 +208,14 @@
         "wires": []
     },
     {
-        "id": "f5e3d1dce238048e",
+        "id": "d7b98065d899a51d",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Merge",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"merge\":[{\"var\":\"array\"},{\"var\":\"otherArray\"}]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -224,14 +225,14 @@
         "y": 700,
         "wires": [
             [
-                "d1f91e699f76ee96"
+                "637a902500d15402"
             ]
         ]
     },
     {
-        "id": "43093c9308d363d4",
+        "id": "77fc474723eddc40",
         "type": "comment",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Array Operations Test",
         "info": "https://jessemitchell.me/json-logic-engine/docs/array",
         "x": 260,
@@ -239,9 +240,9 @@
         "wires": []
     },
     {
-        "id": "b4aebd4a0f31f82d",
+        "id": "c79eac3caf8546e6",
         "type": "inject",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Miscellaneous Injector",
         "props": [
             {
@@ -259,17 +260,17 @@
         "y": 940,
         "wires": [
             [
-                "9e22d9b24d73a121",
-                "2cbd189799938b1e",
-                "77d4f9d9b8d8d8dd",
-                "2d6b0cb621bc64c5"
+                "c3dbcd7eabbf2e01",
+                "2f30925235af8e21",
+                "66bf0a754b774315",
+                "7c71c9d66278c0ad"
             ]
         ]
     },
     {
-        "id": "37e12d61937ab1fb",
+        "id": "5a97c31976e24c64",
         "type": "debug",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "RESULT (Misc)",
         "active": true,
         "tosidebar": true,
@@ -284,12 +285,14 @@
         "wires": []
     },
     {
-        "id": "9e22d9b24d73a121",
+        "id": "c3dbcd7eabbf2e01",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Preserve",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"preserve\": {\"+\": [1,2] } }",
         "ruleType": "json",
         "checkpoint": true,
@@ -299,14 +302,14 @@
         "y": 940,
         "wires": [
             [
-                "37e12d61937ab1fb"
+                "5a97c31976e24c64"
             ]
         ]
     },
     {
-        "id": "3a2bec8ac686aee8",
+        "id": "859b6c0768a2e9fa",
         "type": "comment",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Miscellaneous Operations Test",
         "info": "https://jessemitchell.me/json-logic-engine/docs/misc",
         "x": 240,
@@ -314,12 +317,13 @@
         "wires": []
     },
     {
-        "id": "6db80ce8b6984c4c",
+        "id": "7c0e396996cb45ef",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Subtraction",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
         "rule": "{\"-\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -329,17 +333,18 @@
         "y": 160,
         "wires": [
             [
-                "c3c76ded2bf89cb7"
+                "a6298111ee151d45"
             ]
         ]
     },
     {
-        "id": "47db2ad9e8d70ae3",
+        "id": "99893bb359cf1287",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Multiplication",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
         "rule": "{\"*\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -349,17 +354,19 @@
         "y": 220,
         "wires": [
             [
-                "c3c76ded2bf89cb7"
+                "a6298111ee151d45"
             ]
         ]
     },
     {
-        "id": "8992a15f62d840a0",
+        "id": "ed7ded4f8f5fc2c2",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Division",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"/\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -369,18 +376,20 @@
         "y": 280,
         "wires": [
             [
-                "c3c76ded2bf89cb7"
+                "a6298111ee151d45"
             ]
         ]
     },
     {
-        "id": "c4b28b28d20f0489",
+        "id": "325ad03e20092f86",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Substring",
         "engine": "54d129555b731d34",
         "mode": "operator",
-        "rule": "{\"substr\":[{\"var\":\"\"}, 2,4]}",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"substr\":[{\"var\":\"string\"}, 2,4]}",
         "ruleType": "json",
         "checkpoint": true,
         "checkpointMessage": "",
@@ -389,18 +398,20 @@
         "y": 520,
         "wires": [
             [
-                "1b2ee502b64faffd"
+                "c01c07ba32b7bf80"
             ]
         ]
     },
     {
-        "id": "6309d0d764e1f329",
+        "id": "5374dfee4c1090b5",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Length",
         "engine": "54d129555b731d34",
         "mode": "operator",
-        "rule": "{\"length\":{\"var\":\"\"}}",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"length\":{\"var\":\"string\"}}",
         "ruleType": "json",
         "checkpoint": true,
         "checkpointMessage": "",
@@ -409,17 +420,19 @@
         "y": 640,
         "wires": [
             [
-                "1b2ee502b64faffd"
+                "c01c07ba32b7bf80"
             ]
         ]
     },
     {
-        "id": "73356556df5e5645",
+        "id": "386ff61479083b83",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Length",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"length\":{\"var\":\"array\"}}",
         "ruleType": "json",
         "checkpoint": true,
@@ -429,17 +442,19 @@
         "y": 760,
         "wires": [
             [
-                "d1f91e699f76ee96"
+                "637a902500d15402"
             ]
         ]
     },
     {
-        "id": "6f225133c5e86b81",
+        "id": "c4d6e9506a27f93c",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Get",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"get\":[{\"var\":\"array\"},\"1\"]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -449,17 +464,19 @@
         "y": 820,
         "wires": [
             [
-                "d1f91e699f76ee96"
+                "637a902500d15402"
             ]
         ]
     },
     {
-        "id": "2cbd189799938b1e",
+        "id": "2f30925235af8e21",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Get",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"get\":[{\"var\":\"object\"},\"a\"]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -469,17 +486,19 @@
         "y": 880,
         "wires": [
             [
-                "37e12d61937ab1fb"
+                "5a97c31976e24c64"
             ]
         ]
     },
     {
-        "id": "77d4f9d9b8d8d8dd",
+        "id": "66bf0a754b774315",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Keys",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"keys\":{\"var\":\"object\"}}",
         "ruleType": "json",
         "checkpoint": true,
@@ -489,17 +508,19 @@
         "y": 1000,
         "wires": [
             [
-                "37e12d61937ab1fb"
+                "5a97c31976e24c64"
             ]
         ]
     },
     {
-        "id": "9c3c15d6823d3f1b",
+        "id": "418af9fd9cfb8096",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Modulo",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"%\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -509,17 +530,18 @@
         "y": 340,
         "wires": [
             [
-                "c3c76ded2bf89cb7"
+                "a6298111ee151d45"
             ]
         ]
     },
     {
-        "id": "a64ce767f9eb3002",
+        "id": "1f9eca690ca73cd9",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Maximum",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
         "rule": "{\"max\":[{\"var\":\"a\"},{\"var\":\"b\"},4,8]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -529,17 +551,18 @@
         "y": 400,
         "wires": [
             [
-                "c3c76ded2bf89cb7"
+                "a6298111ee151d45"
             ]
         ]
     },
     {
-        "id": "c9906224f0f56fa4",
+        "id": "7f81999aa5cfc1ef",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "Minimum",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
         "rule": "{\"min\":[{\"var\":\"a\"},{\"var\":\"b\"},4,8]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -549,17 +572,19 @@
         "y": 460,
         "wires": [
             [
-                "c3c76ded2bf89cb7"
+                "a6298111ee151d45"
             ]
         ]
     },
     {
-        "id": "2d6b0cb621bc64c5",
+        "id": "7c71c9d66278c0ad",
         "type": "jsonlogic",
-        "z": "627b095aea0ffef8",
+        "z": "767213299db591c1",
         "name": "IF",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"if\":[{\"==\":[{\"var\":\"object.a\"},5]},\"Number is 5\",\"Number is not 5\"]}",
         "ruleType": "json",
         "checkpoint": true,
@@ -569,7 +594,7 @@
         "y": 1060,
         "wires": [
             [
-                "37e12d61937ab1fb"
+                "5a97c31976e24c64"
             ]
         ]
     },

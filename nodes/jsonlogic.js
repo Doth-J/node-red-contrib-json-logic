@@ -17,10 +17,26 @@ module.exports = function (RED) {
     RED.nodes.registerType('logic_engine', LogicEngineNode);
     function LogicNode(config) {
         RED.nodes.createNode(this, config);
-        // const engine = new LogicEngine()
         this.on('input', (msg, send, done) => {
             this.status({});
-            const configNode = RED.nodes.getNode(config.engine), engine = configNode.engine, getRule = () => {
+            const configNode = RED.nodes.getNode(config.engine), engine = configNode.engine, getData = () => {
+                let data;
+                switch (config.dataType) {
+                    case "msg": {
+                        data = config.data.split(".").reduce((path, curr) => path[curr], msg);
+                        break;
+                    }
+                    case "flow": {
+                        data = this.context().flow.get(config.data);
+                        break;
+                    }
+                    case "global": {
+                        data = this.context().global.get(config.data);
+                        break;
+                    }
+                }
+                return typeof data == "string" ? JSON.parse(data) : data;
+            }, data = getData(), getRule = () => {
                 let rule;
                 switch (config.ruleType) {
                     case "json": {
@@ -45,12 +61,13 @@ module.exports = function (RED) {
                     }
                 }
                 return typeof rule == "string" ? JSON.parse(rule) : rule;
-            }, rule = getRule(), result = engine.run(rule, msg.payload);
+            }, rule = getRule(), result = engine.run(rule, data);
             if (config.checkpoint) {
                 const checkpoint = {
                     id: config.id,
                     mode: config.mode,
                     [config.mode]: rule,
+                    data: config.dataType + "." + config.data,
                     result: result,
                     timestamp: new Date(Date.now()).toString()
                 };
@@ -66,12 +83,12 @@ module.exports = function (RED) {
                     this.status({ fill: result ? "green" : "red", shape: "dot", text: result ? "Pass" : "Fail" });
                 }
                 else {
-                    this.error('Rule must be a logical operator!');
+                    this.error('Rule must be logical operator!');
                 }
             }
             if (config.mode == "operator") {
                 if (typeof result != 'boolean') {
-                    msg.payload.result = result;
+                    msg.result = result;
                     send(msg);
                     this.status({ fill: "blue", shape: "dot", text: result });
                 }

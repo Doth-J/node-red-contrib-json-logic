@@ -1,0 +1,1281 @@
+[
+    {
+        "id": "c75c2061946f2493",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "767213299db591c1",
+        "type": "tab",
+        "label": "Operator Mode",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f2d53c7a4fece389",
+        "type": "tab",
+        "label": "Rule Mode",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6d021524792f5088",
+        "type": "logic_engine",
+        "name": "My Logic Engine",
+        "methods": "engine.addMethod(\"hello\",name=>{\n    return \"Hello, \"+name+\"!\";\n})"
+    },
+    {
+        "id": "54d129555b731d34",
+        "type": "logic_engine",
+        "name": "",
+        "methods": ""
+    },
+    {
+        "id": "9f54bb16f9aae32a",
+        "type": "inject",
+        "z": "c75c2061946f2493",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\":\"John Doe\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "5d24464cdecdd106"
+            ]
+        ]
+    },
+    {
+        "id": "50b280dfa16aa450",
+        "type": "debug",
+        "z": "c75c2061946f2493",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "23b26db68d74a983",
+        "type": "jsonlogic",
+        "z": "c75c2061946f2493",
+        "name": "",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"+\":[{\"var\":\"number\"},10]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "Operation Check",
+        "outputs": 1,
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "50b280dfa16aa450"
+            ]
+        ]
+    },
+    {
+        "id": "3c1eb53b8732bc41",
+        "type": "debug",
+        "z": "c75c2061946f2493",
+        "name": "Pass",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b66841c73ecb0ff4",
+        "type": "jsonlogic",
+        "z": "c75c2061946f2493",
+        "name": "",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"==\":[{\"var\":\"\"},10]}",
+        "ruleType": "json",
+        "checkpoint": false,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "3c1eb53b8732bc41"
+            ],
+            [
+                "d9db148fd42f3967"
+            ]
+        ]
+    },
+    {
+        "id": "d9db148fd42f3967",
+        "type": "debug",
+        "z": "c75c2061946f2493",
+        "name": "Fail",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "c760157c473bfeda",
+        "type": "inject",
+        "z": "c75c2061946f2493",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"number\":10,\"name\":\"Theo\"}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "23b26db68d74a983",
+                "b66841c73ecb0ff4"
+            ]
+        ]
+    },
+    {
+        "id": "5d24464cdecdd106",
+        "type": "jsonlogic",
+        "z": "c75c2061946f2493",
+        "name": "",
+        "engine": "6d021524792f5088",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"hello\":{\"var\":\"name\"}}",
+        "ruleType": "json",
+        "checkpoint": false,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "a228a086a8ccbc63"
+            ]
+        ]
+    },
+    {
+        "id": "a228a086a8ccbc63",
+        "type": "debug",
+        "z": "c75c2061946f2493",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "cf4b663bc552e8b6",
+        "type": "inject",
+        "z": "767213299db591c1",
+        "name": "Math Injector",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"a\":12,\"b\":3}",
+        "payloadType": "json",
+        "x": 290,
+        "y": 280,
+        "wires": [
+            [
+                "c0e4e3a8ba597e9e",
+                "7c0e396996cb45ef",
+                "99893bb359cf1287",
+                "ed7ded4f8f5fc2c2",
+                "418af9fd9cfb8096",
+                "1f9eca690ca73cd9",
+                "7f81999aa5cfc1ef"
+            ]
+        ]
+    },
+    {
+        "id": "a6298111ee151d45",
+        "type": "debug",
+        "z": "767213299db591c1",
+        "name": "RESULT (Math)",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c0e4e3a8ba597e9e",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Addition",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"+\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 520,
+        "y": 100,
+        "wires": [
+            [
+                "a6298111ee151d45"
+            ]
+        ]
+    },
+    {
+        "id": "960aa030c077c95c",
+        "type": "comment",
+        "z": "767213299db591c1",
+        "name": "Math Operations Test",
+        "info": "https://jessemitchell.me/json-logic-engine/docs/math/",
+        "x": 260,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "12b8e9dad7db9f35",
+        "type": "inject",
+        "z": "767213299db591c1",
+        "name": "String Injector",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"string\":\"World\"}",
+        "payloadType": "json",
+        "x": 290,
+        "y": 580,
+        "wires": [
+            [
+                "0460f79a92f2f72f",
+                "325ad03e20092f86",
+                "5374dfee4c1090b5"
+            ]
+        ]
+    },
+    {
+        "id": "c01c07ba32b7bf80",
+        "type": "debug",
+        "z": "767213299db591c1",
+        "name": "RESULT (String)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "0460f79a92f2f72f",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Concatenation",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"cat\":[\"Hello \",{\"var\":\"string\"}, \"!\"]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 540,
+        "y": 580,
+        "wires": [
+            [
+                "c01c07ba32b7bf80"
+            ]
+        ]
+    },
+    {
+        "id": "c8e1316eaebf21e8",
+        "type": "comment",
+        "z": "767213299db591c1",
+        "name": "String Operations Test",
+        "info": "https://jessemitchell.me/json-logic-engine/docs/string",
+        "x": 260,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "fd0348f5f26fe4a8",
+        "type": "inject",
+        "z": "767213299db591c1",
+        "name": "Array Injector",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"array\":[1,2,3],\"otherArray\":[4,5,6]}",
+        "payloadType": "json",
+        "x": 290,
+        "y": 760,
+        "wires": [
+            [
+                "d7b98065d899a51d",
+                "386ff61479083b83",
+                "c4d6e9506a27f93c"
+            ]
+        ]
+    },
+    {
+        "id": "637a902500d15402",
+        "type": "debug",
+        "z": "767213299db591c1",
+        "name": "RESULT (Array)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "d7b98065d899a51d",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Merge",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"merge\":[{\"var\":\"array\"},{\"var\":\"otherArray\"}]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 510,
+        "y": 700,
+        "wires": [
+            [
+                "637a902500d15402"
+            ]
+        ]
+    },
+    {
+        "id": "77fc474723eddc40",
+        "type": "comment",
+        "z": "767213299db591c1",
+        "name": "Array Operations Test",
+        "info": "https://jessemitchell.me/json-logic-engine/docs/array",
+        "x": 260,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c79eac3caf8546e6",
+        "type": "inject",
+        "z": "767213299db591c1",
+        "name": "Miscellaneous Injector",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"object\":{\"a\":5,\"b\":\"apple\"}}",
+        "payloadType": "json",
+        "x": 260,
+        "y": 940,
+        "wires": [
+            [
+                "c3dbcd7eabbf2e01",
+                "2f30925235af8e21",
+                "66bf0a754b774315",
+                "7c71c9d66278c0ad"
+            ]
+        ]
+    },
+    {
+        "id": "5a97c31976e24c64",
+        "type": "debug",
+        "z": "767213299db591c1",
+        "name": "RESULT (Misc)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "c3dbcd7eabbf2e01",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Preserve",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"preserve\": {\"+\": [1,2] } }",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 520,
+        "y": 940,
+        "wires": [
+            [
+                "5a97c31976e24c64"
+            ]
+        ]
+    },
+    {
+        "id": "859b6c0768a2e9fa",
+        "type": "comment",
+        "z": "767213299db591c1",
+        "name": "Miscellaneous Operations Test",
+        "info": "https://jessemitchell.me/json-logic-engine/docs/misc",
+        "x": 240,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "7c0e396996cb45ef",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Subtraction",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "rule": "{\"-\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 530,
+        "y": 160,
+        "wires": [
+            [
+                "a6298111ee151d45"
+            ]
+        ]
+    },
+    {
+        "id": "99893bb359cf1287",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Multiplication",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "rule": "{\"*\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "a6298111ee151d45"
+            ]
+        ]
+    },
+    {
+        "id": "ed7ded4f8f5fc2c2",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Division",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"/\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 520,
+        "y": 280,
+        "wires": [
+            [
+                "a6298111ee151d45"
+            ]
+        ]
+    },
+    {
+        "id": "325ad03e20092f86",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Substring",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"substr\":[{\"var\":\"string\"}, 2,4]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 520,
+        "y": 520,
+        "wires": [
+            [
+                "c01c07ba32b7bf80"
+            ]
+        ]
+    },
+    {
+        "id": "5374dfee4c1090b5",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Length",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"length\":{\"var\":\"string\"}}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 510,
+        "y": 640,
+        "wires": [
+            [
+                "c01c07ba32b7bf80"
+            ]
+        ]
+    },
+    {
+        "id": "386ff61479083b83",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Length",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"length\":{\"var\":\"array\"}}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 510,
+        "y": 760,
+        "wires": [
+            [
+                "637a902500d15402"
+            ]
+        ]
+    },
+    {
+        "id": "c4d6e9506a27f93c",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Get",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"get\":[{\"var\":\"array\"},\"1\"]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 510,
+        "y": 820,
+        "wires": [
+            [
+                "637a902500d15402"
+            ]
+        ]
+    },
+    {
+        "id": "2f30925235af8e21",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Get",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"get\":[{\"var\":\"object\"},\"a\"]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 510,
+        "y": 880,
+        "wires": [
+            [
+                "5a97c31976e24c64"
+            ]
+        ]
+    },
+    {
+        "id": "66bf0a754b774315",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Keys",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"keys\":{\"var\":\"object\"}}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 510,
+        "y": 1000,
+        "wires": [
+            [
+                "5a97c31976e24c64"
+            ]
+        ]
+    },
+    {
+        "id": "418af9fd9cfb8096",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Modulo",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"%\":[{\"var\":\"a\"},{\"var\":\"b\"}]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 520,
+        "y": 340,
+        "wires": [
+            [
+                "a6298111ee151d45"
+            ]
+        ]
+    },
+    {
+        "id": "1f9eca690ca73cd9",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Maximum",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "rule": "{\"max\":[{\"var\":\"a\"},{\"var\":\"b\"},4,8]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 520,
+        "y": 400,
+        "wires": [
+            [
+                "a6298111ee151d45"
+            ]
+        ]
+    },
+    {
+        "id": "7f81999aa5cfc1ef",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "Minimum",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "rule": "{\"min\":[{\"var\":\"a\"},{\"var\":\"b\"},4,8]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "a6298111ee151d45"
+            ]
+        ]
+    },
+    {
+        "id": "7c71c9d66278c0ad",
+        "type": "jsonlogic",
+        "z": "767213299db591c1",
+        "name": "IF",
+        "engine": "54d129555b731d34",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"if\":[{\"==\":[{\"var\":\"object.a\"},5]},\"Number is 5\",\"Number is not 5\"]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 510,
+        "y": 1060,
+        "wires": [
+            [
+                "5a97c31976e24c64"
+            ]
+        ]
+    },
+    {
+        "id": "64979455e0ce73af",
+        "type": "inject",
+        "z": "f2d53c7a4fece389",
+        "name": "Logic Injector",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"data\":{\"message\":\"World\",\"number\":5}}",
+        "payloadType": "json",
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "00a501c3b45cb124",
+                "dd8993c812993c9a",
+                "51390b7e137626cf",
+                "7a78f5f187152ee1",
+                "f30975266373e11a",
+                "ae31a0ded5c36e37",
+                "c1eadfa4ba55cf4e",
+                "f08fd84227243d51"
+            ]
+        ]
+    },
+    {
+        "id": "a0ea17d3d4718cf1",
+        "type": "comment",
+        "z": "f2d53c7a4fece389",
+        "name": "Logic Operations Test",
+        "info": "https://jessemitchell.me/json-logic-engine/docs/logic",
+        "x": 240,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "00a501c3b45cb124",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Greater Than",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\">\":[{\"var\":\"data.number\"}, 5]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 510,
+        "y": 180,
+        "wires": [
+            [
+                "1a9df7313681c9c7"
+            ],
+            [
+                "528fe58f283567ac"
+            ]
+        ]
+    },
+    {
+        "id": "dd8993c812993c9a",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Equals",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"==\":[{\"var\":\"data.number\"}, 5]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "1a9df7313681c9c7"
+            ],
+            [
+                "528fe58f283567ac"
+            ]
+        ]
+    },
+    {
+        "id": "51390b7e137626cf",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Less Than",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"<\":[{\"var\":\"data.number\"}, 5]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "1a9df7313681c9c7"
+            ],
+            [
+                "528fe58f283567ac"
+            ]
+        ]
+    },
+    {
+        "id": "1a9df7313681c9c7",
+        "type": "debug",
+        "z": "f2d53c7a4fece389",
+        "name": "PASS (Logic)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "528fe58f283567ac",
+        "type": "debug",
+        "z": "f2d53c7a4fece389",
+        "name": "FAIL (Logic)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "c1eadfa4ba55cf4e",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Not (!)",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"!\":{\"var\":\"data.number\"}}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 490,
+        "y": 540,
+        "wires": [
+            [
+                "1a9df7313681c9c7"
+            ],
+            [
+                "528fe58f283567ac"
+            ]
+        ]
+    },
+    {
+        "id": "f08fd84227243d51",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "toBoolean (!!)",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"!!\":{\"var\":\"data.number\"}}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "1a9df7313681c9c7"
+            ],
+            [
+                "528fe58f283567ac"
+            ]
+        ]
+    },
+    {
+        "id": "7a78f5f187152ee1",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Not Equals",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"!=\":[{\"var\":\"data.number\"}, 5]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 510,
+        "y": 300,
+        "wires": [
+            [
+                "1a9df7313681c9c7"
+            ],
+            [
+                "528fe58f283567ac"
+            ]
+        ]
+    },
+    {
+        "id": "f30975266373e11a",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Greater Than Equals",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\">=\":[{\"var\":\"data.number\"}, 5]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 540,
+        "y": 120,
+        "wires": [
+            [
+                "1a9df7313681c9c7"
+            ],
+            [
+                "528fe58f283567ac"
+            ]
+        ]
+    },
+    {
+        "id": "ae31a0ded5c36e37",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Less Than Equals",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"<=\":[{\"var\":\"data.number\"}, 5]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 530,
+        "y": 420,
+        "wires": [
+            [
+                "1a9df7313681c9c7"
+            ],
+            [
+                "528fe58f283567ac"
+            ]
+        ]
+    },
+    {
+        "id": "677b56aed6e51249",
+        "type": "inject",
+        "z": "f2d53c7a4fece389",
+        "name": "String Injector",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"string\":\"World\"}",
+        "payloadType": "json",
+        "x": 270,
+        "y": 680,
+        "wires": [
+            [
+                "2947c767695bdff0"
+            ]
+        ]
+    },
+    {
+        "id": "c31aa8552e28536b",
+        "type": "comment",
+        "z": "f2d53c7a4fece389",
+        "name": "String Operations Test",
+        "info": "https://jessemitchell.me/json-logic-engine/docs/string",
+        "x": 240,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "2947c767695bdff0",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Includes",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"in\":[{\"var\":\"string\"}, \"World\"]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 500,
+        "y": 680,
+        "wires": [
+            [
+                "99dd93b860cae7c9"
+            ],
+            [
+                "ed046a8dfb7a8172"
+            ]
+        ]
+    },
+    {
+        "id": "99dd93b860cae7c9",
+        "type": "debug",
+        "z": "f2d53c7a4fece389",
+        "name": "PASS (String)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "ed046a8dfb7a8172",
+        "type": "debug",
+        "z": "f2d53c7a4fece389",
+        "name": "FAIL (String)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "168f5451eb5ebd15",
+        "type": "inject",
+        "z": "f2d53c7a4fece389",
+        "name": "Array Injector",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[1,2,3,4,5]",
+        "payloadType": "json",
+        "x": 270,
+        "y": 800,
+        "wires": [
+            [
+                "a04a1bc3d126852c"
+            ]
+        ]
+    },
+    {
+        "id": "0f4d736224863843",
+        "type": "comment",
+        "z": "f2d53c7a4fece389",
+        "name": "Array Operations Test",
+        "info": "https://jessemitchell.me/json-logic-engine/docs/array",
+        "x": 240,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "a04a1bc3d126852c",
+        "type": "jsonlogic",
+        "z": "f2d53c7a4fece389",
+        "name": "Includes",
+        "engine": "54d129555b731d34",
+        "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"in\":[6,{\"var\":\"\"}]}",
+        "ruleType": "json",
+        "checkpoint": true,
+        "checkpointMessage": "",
+        "outputs": 2,
+        "x": 500,
+        "y": 800,
+        "wires": [
+            [
+                "b5f4a73bd4c7d40b"
+            ],
+            [
+                "8edcc1e55c5752d2"
+            ]
+        ]
+    },
+    {
+        "id": "b5f4a73bd4c7d40b",
+        "type": "debug",
+        "z": "f2d53c7a4fece389",
+        "name": "PASS (String)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "8edcc1e55c5752d2",
+        "type": "debug",
+        "z": "f2d53c7a4fece389",
+        "name": "FAIL (String)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 840,
+        "wires": []
+    }
+]

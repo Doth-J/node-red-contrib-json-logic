@@ -1,8 +1,33 @@
 [
     {
+        "id": "9f54bb16f9aae32a",
+        "type": "inject",
+        "z": "c75c2061946f2493",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\":\"John Doe\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "5d24464cdecdd106"
+            ]
+        ]
+    },
+    {
         "id": "50b280dfa16aa450",
         "type": "debug",
-        "z": "7d00723566e67ad3",
+        "z": "c75c2061946f2493",
         "name": "Result",
         "active": true,
         "tosidebar": true,
@@ -12,24 +37,26 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
-        "y": 240,
+        "x": 550,
+        "y": 200,
         "wires": []
     },
     {
         "id": "23b26db68d74a983",
         "type": "jsonlogic",
-        "z": "7d00723566e67ad3",
+        "z": "c75c2061946f2493",
         "name": "",
         "engine": "54d129555b731d34",
         "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"+\":[{\"var\":\"number\"},10]}",
         "ruleType": "json",
         "checkpoint": true,
         "checkpointMessage": "Operation Check",
         "outputs": 1,
-        "x": 300,
-        "y": 240,
+        "x": 380,
+        "y": 200,
         "wires": [
             [
                 "50b280dfa16aa450"
@@ -39,7 +66,7 @@
     {
         "id": "3c1eb53b8732bc41",
         "type": "debug",
-        "z": "7d00723566e67ad3",
+        "z": "c75c2061946f2493",
         "name": "Pass",
         "active": true,
         "tosidebar": true,
@@ -49,24 +76,26 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
-        "y": 140,
+        "x": 550,
+        "y": 100,
         "wires": []
     },
     {
         "id": "b66841c73ecb0ff4",
         "type": "jsonlogic",
-        "z": "7d00723566e67ad3",
+        "z": "c75c2061946f2493",
         "name": "",
         "engine": "54d129555b731d34",
         "mode": "rule",
+        "data": "payload",
+        "dataType": "msg",
         "rule": "{\"==\":[{\"var\":\"\"},10]}",
         "ruleType": "json",
         "checkpoint": false,
         "checkpointMessage": "",
         "outputs": 2,
-        "x": 290,
-        "y": 160,
+        "x": 370,
+        "y": 120,
         "wires": [
             [
                 "3c1eb53b8732bc41"
@@ -79,7 +108,7 @@
     {
         "id": "d9db148fd42f3967",
         "type": "debug",
-        "z": "7d00723566e67ad3",
+        "z": "c75c2061946f2493",
         "name": "Fail",
         "active": true,
         "tosidebar": true,
@@ -89,14 +118,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
-        "y": 180,
+        "x": 550,
+        "y": 140,
         "wires": []
     },
     {
         "id": "c760157c473bfeda",
         "type": "inject",
-        "z": "7d00723566e67ad3",
+        "z": "c75c2061946f2493",
         "name": "",
         "props": [
             {
@@ -108,10 +137,10 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"number\":10}",
+        "payload": "{\"number\":10,\"name\":\"Theo\"}",
         "payloadType": "json",
-        "x": 130,
-        "y": 200,
+        "x": 190,
+        "y": 160,
         "wires": [
             [
                 "23b26db68d74a983",
@@ -120,9 +149,54 @@
         ]
     },
     {
+        "id": "5d24464cdecdd106",
+        "type": "jsonlogic",
+        "z": "c75c2061946f2493",
+        "name": "",
+        "engine": "6d021524792f5088",
+        "mode": "operator",
+        "data": "payload",
+        "dataType": "msg",
+        "rule": "{\"hello\":{\"var\":\"name\"}}",
+        "ruleType": "json",
+        "checkpoint": false,
+        "checkpointMessage": "",
+        "outputs": 1,
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "a228a086a8ccbc63"
+            ]
+        ]
+    },
+    {
+        "id": "a228a086a8ccbc63",
+        "type": "debug",
+        "z": "c75c2061946f2493",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 260,
+        "wires": []
+    },
+    {
         "id": "54d129555b731d34",
         "type": "logic_engine",
         "name": "",
         "methods": ""
+    },
+    {
+        "id": "6d021524792f5088",
+        "type": "logic_engine",
+        "name": "My Logic Engine",
+        "methods": "engine.addMethod(\"hello\",name=>{\n    return \"Hello, \"+name+\"!\";\n})"
     }
 ]
