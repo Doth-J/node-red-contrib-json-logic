@@ -18,23 +18,21 @@ A configuration node for the logic node's `Logic Engine` is provided to share th
 ### Adding Methods :nut_and_bolt:
 The configuration node allows you to set the name (*optional*) and allows you to add new methods to the `Logic Engine`. The editor inside the `Logic Engine` config node gives you access to an **engine** variable that contains the instance of the `Logic Engine`. 
 
-  ![ConfigMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_methods.png?raw=true) 
-  
-  Check [here](https://jessemitchell.me/json-logic-engine/docs/methods) for more info on **adding methods**.
+  [![ConfigMethods](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_methods.png?raw=true)](https://jessemitchell.me/json-logic-engine/docs/methods)
 
 ## Using the Logic Node :wrench:
 The logic node provides two modes od usage:
 - ### Rule Mode
   This mode is used to apply a rule on the data given, the node evaluates the rule against the `msg.payload` and forwards the `msg` object accordingly to the `pass` and `fail` outputs. Rules defined must be *logical operations* and in *json* format:
 
-  [![RuleMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode.png?raw=true)](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/rule_mode_flow.json) 
+  [![RuleMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule.png?raw=true)](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/rule_mode_flow.json) 
   
   Check [here](https://jessemitchell.me/json-logic-engine/docs/logic) for more info on **logical operations**.
 
 - ### Operator Mode
   This mode is used to perform custom logic operations on the fly when a `msg.payload` is inbound, the node evaluates the operation and adds it to the `msg.result` field.
 
-  [![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode.png?raw=true)](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/operator_mode_flow.json)
+  [![OperatorMode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator.png?raw=true)](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/flows/operator_mode_flow.json)
   
   Check [here](https://jessemitchell.me/json-logic-engine/docs/math) for more info on **math operations**.
 
@@ -43,11 +41,11 @@ You also can import this [example flow](https://github.com/Doth-J/node-red-contr
 ## Setting Rules & Operations :bookmark_tabs:
 The rules used by the logic node must be in `JSON` format and they can be set by editing the `Rule(s)` property on the logic node's edit dialog window. There is also an option to set the rules using a `msg` field by clicking on the dropdown next to the node's property and selecting `msg`.   
     
-  ![RuleModeEdit](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_mode_edit.png?raw=true)
+  ![RuleModeEdit](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_edit.png?raw=true)
 
 Same is true for when using the logic node in the `operator` mode. The `Rule(s)` property transforms to `Operation(s)` property and a **non** logical operation is expected in the input field. 
   
-  ![OperatorModeEdit](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_mode_edit.png?raw=true)
+  ![OperatorModeEdit](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_edit.png?raw=true)
 
   ## Check please? :receipt:
   In the edit dialog of the logic node you can enable the `Checkpoint` property, this sets the node to append a checkpoint event to the `msg.checkpoints` array about the logical rule or operation performed.
