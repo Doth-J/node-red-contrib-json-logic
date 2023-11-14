@@ -155,14 +155,3 @@ In the `logic` node, you can optionally can add a message on the checkpoint even
 ```
 
   The `msg.checkpoints` is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the node's id, mode and engine id, an optional message and a timestamp for the checkpoint event. Each logic and switcher node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   
-
-
-## Switcher Node 📅
-The `switcher` node utilizes the [json-logic-engine](https://jessemitchell.me/json-logic-engine/) to evaluate multiple operations on the data target object. The node can act as a complex data switch, if given rules to evaluate, or as on-the-fly operator for incoming data.
-
- ![SwitcherNode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/switcher.png?raw=true)
- 
-## Using the Switcher Node 🔧
-Similarly to the `logic` node, the `switcher` node can be configured with a `Logic Engine` instance, the target data to inject to the engine and  a list of operations to perform to those target data. Each new logic operation will create a new output for the node that will be used to send the operation result in the `msg.result` property. The node forwards any `msg` properties as receives, but it will change the `msg.result` and `msg.checkpoints` (if enabled) properties. You can configure the node to append a checkpoint report to the `msg` object and also block the forwarding of an output if it has evaluated to a **false** (i.e. used a logic operation).
-
- ![SwitcherNodeProps](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/switcher_props.png?raw=true)
