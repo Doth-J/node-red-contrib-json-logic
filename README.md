@@ -62,7 +62,7 @@ In the `switcher`, each new logic operation will create a new output for the nod
 
 ## Check please? 🧾
 In the edit dialog of the both nodes you can enable the `Checkpoint` property, this sets the node to append a checkpoint event to the `msg.checkpoints` array about the logical rule or operation performed.
-Optionally you can add a message on the checkpoint event in the input shown:
+In the `logic` node, you can optionally can add a message on the checkpoint event in the input shown:
 
   ![CheckpointProperty](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/checkpoint_edit.png?raw=true)
 
@@ -154,7 +154,7 @@ Optionally you can add a message on the checkpoint event in the input shown:
   ]}
 ```
 
-  The `msg.checkpoints` is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the logic node's id, mode and engine id, an optional message and a timestamp for the checkpoint event. Each logic node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   
+  The `msg.checkpoints` is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the node's id, mode and engine id, an optional message and a timestamp for the checkpoint event. Each logic and switcher node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   
 
 
 ## Switcher Node 📅

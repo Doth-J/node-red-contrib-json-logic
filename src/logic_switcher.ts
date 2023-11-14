@@ -21,6 +21,7 @@ export default function(RED:NodeRED.NodeAPI){
     function LogicSwitchNode(this:NodeRED.Node, config:LogicSwitchNodeConfig){
       RED.nodes.createNode(this,config);
       this.on('input',(msg:any,send,done)=>{
+        this.status({});
         const configNode = RED.nodes.getNode(config.engine) as any as LogicEngineNodeConfig, 
               engine = configNode.engine as LogicEngine,
               getData = () => {
@@ -86,13 +87,23 @@ export default function(RED:NodeRED.NodeAPI){
             timestamp:new Date(Date.now()).toString()
           }
           outputs.forEach((ouput:any,index)=>{
-            if(ouput != null) Object.assign(outputs[index],{checkpoints:[{
-              operation:operations[index],
-              result:results[index],
-              ...nodeCheckpoint
-            }]});
-          }) 
-        }
+            if(ouput == null) return
+            if(msg.checkpoints){
+              msg.checkpoints.push({
+                operation:operations[index],
+                result:results[index],
+                ...nodeCheckpoint
+              })
+            }else{
+              Object.assign(outputs[index],{checkpoints:[{
+                operation:operations[index],
+                result:results[index],
+                ...nodeCheckpoint
+              }]});
+            }
+          })
+          this.status({fill:"blue",shape:"dot",text:outputs.map((output,index)=>output!==null?(index+1):undefined).filter((value)=>value!=undefined).join(',')}) 
+        } 
         send(outputs)
         if(done) done();
       });

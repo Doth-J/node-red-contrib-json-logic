@@ -4,6 +4,7 @@ function default_1(RED) {
     function LogicSwitchNode(config) {
         RED.nodes.createNode(this, config);
         this.on('input', (msg, send, done) => {
+            this.status({});
             const configNode = RED.nodes.getNode(config.engine), engine = configNode.engine, getData = () => {
                 let data;
                 switch (config.dataType) {
@@ -61,9 +62,16 @@ function default_1(RED) {
                     timestamp: new Date(Date.now()).toString()
                 };
                 outputs.forEach((ouput, index) => {
-                    if (ouput != null)
+                    if (ouput == null)
+                        return;
+                    if (msg.checkpoints) {
+                        msg.checkpoints.push(Object.assign({ operation: operations[index], result: results[index] }, nodeCheckpoint));
+                    }
+                    else {
                         Object.assign(outputs[index], { checkpoints: [Object.assign({ operation: operations[index], result: results[index] }, nodeCheckpoint)] });
+                    }
                 });
+                this.status({ fill: "blue", shape: "dot", text: outputs.map((output, index) => output !== null ? (index + 1) : undefined).filter((value) => value != undefined).join(',') });
             }
             send(outputs);
             if (done)
