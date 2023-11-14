@@ -87,6 +87,6 @@ function default_1(RED) {
                 done();
         });
     }
-    RED.nodes.registerType('logic', LogicNode);
+    RED.nodes.registerType('jsonlogic', LogicNode);
 }
 exports.default = default_1;

@@ -64,12 +64,11 @@ function default_1(RED) {
                 outputs.forEach((ouput, index) => {
                     if (ouput == null)
                         return;
-                    if (msg.checkpoints) {
-                        msg.checkpoints.push(Object.assign({ operation: operations[index], result: results[index] }, nodeCheckpoint));
-                    }
-                    else {
-                        Object.assign(outputs[index], { checkpoints: [Object.assign({ operation: operations[index], result: results[index] }, nodeCheckpoint)] });
-                    }
+                    const checkpoints = [];
+                    if (msg.checkpoints)
+                        checkpoints.push(...msg.checkpoints);
+                    checkpoints.push(Object.assign({ operation: operations[index], result: results[index] }, nodeCheckpoint));
+                    Object.assign(outputs[index], { checkpoints });
                 });
                 this.status({ fill: "blue", shape: "dot", text: outputs.map((output, index) => output !== null ? (index + 1) : undefined).filter((value) => value != undefined).join(',') });
             }

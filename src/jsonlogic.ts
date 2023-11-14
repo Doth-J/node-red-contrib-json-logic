@@ -108,6 +108,6 @@ export default function(RED:NodeRED.NodeAPI){
       });
     }
 
-    RED.nodes.registerType('logic',LogicNode);
+    RED.nodes.registerType('jsonlogic',LogicNode);
       
 }
