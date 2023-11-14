@@ -44,14 +44,14 @@
         "type": "comment",
         "z": "f2d53c7a4fece389",
         "name": "Logic Operations Test",
-        "info": "https://jessemitchell.me/json-logic-engine/docs/logic",
+        "info": "https://jessemitchell.me/json-jsonlogic-engine/docs/jsonlogic",
         "x": 240,
         "y": 280,
         "wires": []
     },
     {
         "id": "00a501c3b45cb124",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Greater Than",
         "engine": "54d129555b731d34",
@@ -76,7 +76,7 @@
     },
     {
         "id": "dd8993c812993c9a",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Equals",
         "engine": "54d129555b731d34",
@@ -101,7 +101,7 @@
     },
     {
         "id": "51390b7e137626cf",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Less Than",
         "engine": "54d129555b731d34",
@@ -160,7 +160,7 @@
     },
     {
         "id": "c1eadfa4ba55cf4e",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Not (!)",
         "engine": "54d129555b731d34",
@@ -185,7 +185,7 @@
     },
     {
         "id": "f08fd84227243d51",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "toBoolean (!!)",
         "engine": "54d129555b731d34",
@@ -210,7 +210,7 @@
     },
     {
         "id": "7a78f5f187152ee1",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Not Equals",
         "engine": "54d129555b731d34",
@@ -235,7 +235,7 @@
     },
     {
         "id": "f30975266373e11a",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Greater Than Equals",
         "engine": "54d129555b731d34",
@@ -260,7 +260,7 @@
     },
     {
         "id": "ae31a0ded5c36e37",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Less Than Equals",
         "engine": "54d129555b731d34",
@@ -313,14 +313,14 @@
         "type": "comment",
         "z": "f2d53c7a4fece389",
         "name": "String Operations Test",
-        "info": "https://jessemitchell.me/json-logic-engine/docs/string",
+        "info": "https://jessemitchell.me/json-jsonlogic-engine/docs/string",
         "x": 240,
         "y": 640,
         "wires": []
     },
     {
         "id": "2947c767695bdff0",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Includes",
         "engine": "54d129555b731d34",
@@ -407,14 +407,14 @@
         "type": "comment",
         "z": "f2d53c7a4fece389",
         "name": "Array Operations Test",
-        "info": "https://jessemitchell.me/json-logic-engine/docs/array",
+        "info": "https://jessemitchell.me/json-jsonlogic-engine/docs/array",
         "x": 240,
         "y": 760,
         "wires": []
     },
     {
         "id": "a04a1bc3d126852c",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "f2d53c7a4fece389",
         "name": "Includes",
         "engine": "54d129555b731d34",
@@ -473,7 +473,7 @@
     },
     {
         "id": "54d129555b731d34",
-        "type": "logic_engine",
+        "type": "jsonlogic_engine",
         "name": "",
         "methods": ""
     }

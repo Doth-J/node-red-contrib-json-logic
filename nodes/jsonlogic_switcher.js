@@ -78,6 +78,6 @@ function default_1(RED) {
                 done();
         });
     }
-    RED.nodes.registerType('logic_switcher', LogicSwitchNode);
+    RED.nodes.registerType('jsonlogic_switcher', LogicSwitchNode);
 }
 exports.default = default_1;

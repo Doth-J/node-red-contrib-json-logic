@@ -21,5 +21,5 @@ export default function(RED:NodeRED.NodeAPI){
       }
     }
     
-    RED.nodes.registerType('logic_engine',LogicEngineNode);
+    RED.nodes.registerType('jsonlogic_engine',LogicEngineNode);
 }

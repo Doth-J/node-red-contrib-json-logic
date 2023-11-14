@@ -1,5 +1,5 @@
-<script type="text/javascript" id="node-logic_switcher">
-    RED.nodes.registerType('logic_switcher',{
+<script type="text/javascript" id="node-jsonlogic_switcher">
+    RED.nodes.registerType('jsonlogic_switcher',{
         category:'function',
         color:'#008ECC',
         icon:'switcher.svg',
@@ -20,7 +20,7 @@
         },
         defaults: {
             name: {value:''},
-            engine: {value:"", type:"logic_engine"},
+            engine: {value:"", type:"jsonlogic_engine"},
             checkpoints: {value:false},
             block: {value:false},
             data: {value:'payload',required:true,validate: RED.validators.typedInput("dataType", false)},
@@ -132,7 +132,7 @@
         }
     });
 </script>
-<script type="text/html" data-template-name="logic_switcher">
+<script type="text/html" data-template-name="jsonlogic_switcher">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name: </label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -162,7 +162,7 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="logic_switcher">
+<script type="text/html" data-help-name="jsonlogic_switcher">
     <p>Logic Switcher Node-RED node</p>
     <h3>Inputs</h3>
     <dl class="message-properties">

@@ -15,6 +15,6 @@ function default_1(RED) {
             }
         }
     }
-    RED.nodes.registerType('logic_engine', LogicEngineNode);
+    RED.nodes.registerType('jsonlogic_engine', LogicEngineNode);
 }
 exports.default = default_1;

@@ -43,7 +43,7 @@
     },
     {
         "id": "23b26db68d74a983",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "bedf3ffdf0b1e297",
         "name": "",
         "engine": "54d129555b731d34",
@@ -82,7 +82,7 @@
     },
     {
         "id": "b66841c73ecb0ff4",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "bedf3ffdf0b1e297",
         "name": "",
         "engine": "54d129555b731d34",
@@ -150,7 +150,7 @@
     },
     {
         "id": "5d24464cdecdd106",
-        "type": "logic",
+        "type": "jsonlogic",
         "z": "bedf3ffdf0b1e297",
         "name": "",
         "engine": "6d021524792f5088",
@@ -189,14 +189,14 @@
     },
     {
         "id": "54d129555b731d34",
-        "type": "logic_engine",
+        "type": "jsonlogic_engine",
         "name": "",
         "methods": ""
     },
     {
         "id": "6d021524792f5088",
-        "type": "logic_engine",
-        "name": "My Logic Engine",
+        "type": "jsonlogic_engine",
+        "name": "My jsonlogic Engine",
         "methods": "engine.addMethod(\"hello\",name=>{\n    return \"Hello, \"+name+\"!\";\n})"
     }
 ]

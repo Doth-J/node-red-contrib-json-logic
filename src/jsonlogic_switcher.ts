@@ -1,6 +1,6 @@
 import * as NodeRED from "node-red";
 import { LogicEngine } from 'json-logic-engine'
-import { LogicEngineNodeConfig } from './logic_engine';
+import { LogicEngineNodeConfig } from './jsonlogic_engine';
 
 export interface LogicSwitchOperation {
   op:string,
@@ -109,6 +109,6 @@ export default function(RED:NodeRED.NodeAPI){
       });
     }
 
-    RED.nodes.registerType('logic_switcher',LogicSwitchNode);
+    RED.nodes.registerType('jsonlogic_switcher',LogicSwitchNode);
       
 }

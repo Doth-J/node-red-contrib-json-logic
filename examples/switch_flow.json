@@ -85,7 +85,7 @@
     },
     {
         "id": "41a8322123bc809a",
-        "type": "logic_switcher",
+        "type": "jsonlogic_switcher",
         "z": "2387f888eed2447a",
         "name": "",
         "engine": "54d129555b731d34",
@@ -192,7 +192,7 @@
     },
     {
         "id": "54d129555b731d34",
-        "type": "logic_engine",
+        "type": "jsonlogic_engine",
         "name": "",
         "methods": "engine.addMethod(\"greet\",(name)=>{\n    return \"Hello there \"+name+\"!\"\n})"
     }

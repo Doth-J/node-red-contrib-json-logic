@@ -1,6 +1,6 @@
 import * as NodeRED from "node-red";
 import { LogicEngine } from 'json-logic-engine'
-import { LogicEngineNodeConfig } from './logic_engine';
+import { LogicEngineNodeConfig } from './jsonlogic_engine';
 
 export interface LogicNodeConfig extends NodeRED.NodeDef{
   engine:string,
