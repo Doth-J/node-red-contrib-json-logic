@@ -1,0 +1,132 @@
+<script type="text/javascript" id="node-logic">
+    RED.nodes.registerType('logic',{
+        category:'function',
+        color:'#008ECC',
+        icon:'logic.svg',
+        inputs:1,
+        inputLabels: "data",
+        paletteLabel:"logic",
+        outputs:2,
+        outputLabels: function(index){
+            if(this.mode=="rule"){
+                if(index==0) return "pass"
+                if(index==1) return "fail"
+            }
+            if(this.mode=="operator"){
+                return "result"
+            }
+        },
+        defaults: {
+            name: {value:''},
+            engine: {value:"", type:"logic_engine"},
+            mode: {value:'rule'},
+            data: {value:'payload',required:true},
+            dataType: {value:'msg'},
+            rule: {value:'',required:true},
+            ruleType: {value:'json'},
+            checkpoint:{value:false},
+            checkpointMessage:{value:""},
+            outputs:{value:2}
+        },
+        oneditprepare:()=>{
+            $("#node-input-mode").typedInput({
+                types:[
+                    {
+                        options:[
+                            {value:"rule", label:'Rule'},
+                            {value:"operator", label:'Operator'}
+                        ]
+                    }
+                ]
+            })
+            $("#node-input-checkpoint").change(()=>$("#node-input-checkpoint").is(":checked") ? $("#node-input-checkpoint-hint").show() : $("#node-input-checkpoint-hint").hide());
+            $("#node-input-mode").change(()=>{
+                switch($("#node-input-mode").val()){
+                    case "rule":{
+                        $("#mode-desc").html('<i class="fa fa-check-circle"></i> Rule(s)')
+                        $("#node-input-outputs").val(2)
+                        break;
+                    }
+                    case "operator":{
+                        $("#mode-desc").html('<i class="fa fa-plus-circle"></i> Operation(s)')
+                        $("#node-input-outputs").val(1)
+                        break;
+                    }
+                }
+            })
+            $("#node-input-rule").typedInput({
+                types: ["json","msg","flow","global","env"],
+                typeField: "#node-input-ruleType"
+            })
+            $("#node-input-data").typedInput({
+                types: ["msg","flow","global"],
+                typeField: "#node-input-dataType"
+            })
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        label: function(){
+            return this.name || this.mode
+        }
+    });
+</script>
+<script type="text/html" data-template-name="logic">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name: </label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-engine"><i class="fa fa-gear"></i> Engine: </label>
+        <input type="text" id="node-input-engine" placeholder="Engine">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-codepen"></i> Mode:</label>
+        <input type="text" id="node-input-mode">
+        <input type="hidden" id="node-input-outputs">
+    </div>
+    <div class="form-row">
+        <label for="node-input-rule"><span id="mode-desc"><i class="fa fa-check-circle"></i> Rule(s):</span></label>
+        <input type="text" id="node-input-rule">
+        <input type="hidden" id="node-input-ruleType">
+    </div>
+    <div class="form-row">
+        <label for="node-input-data"><i class="fa fa-dot-circle-o"></i> Data:</label>
+        <input type="text" id="node-input-data">
+        <input type="hidden" id="node-input-dataType">
+    </div>
+    <div class="form-row">
+        <div style="display:flex;align-items:start;gap:5px">
+            <label for="node-input-checkpoint"><i class="fa fa-flag"></i> Checkpoint:</label>
+            <input  style="width: auto;" type="checkbox" id="node-input-checkpoint">
+        </div>
+        <div id="node-input-checkpoint-hint" style="display:flex;flex-direction:column;gap:5px;line-height:normal;font-size:13px;width:100%;font-style: italic;">
+            <div style="display: flex; gap:10px;align-items: center;">
+                <p style="margin: 0;gap: 5x;"><i class="fa fa-comment"></i></p>
+                <input style="width: auto;" type="text" id="node-input-checkpointMessage" placeholder="Message">
+            </div>
+            <div style="display: flex; gap:5px">
+                <i class="fa fa-plus"></i> Append checkpoint to <code>msg.checkpoints</code>.
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="logic">
+    <p>Logic Node-RED node</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">json</span>
+    </dt>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">json</span>
+    </dt>
+    <dt>checkpoints
+        <span class="property-type">array[]</span>
+    </dt>
+    <h3>Details</h3>
+    <p>This node implements json-logic for creating rules and evaluating operations.</p>
+</script>

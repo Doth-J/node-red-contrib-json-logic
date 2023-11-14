@@ -1,20 +1,6 @@
 "use strict";
-const json_logic_engine_1 = require("json-logic-engine");
-module.exports = function (RED) {
-    function LogicEngineNode(config) {
-        RED.nodes.createNode(this, config);
-        this.engine = new json_logic_engine_1.LogicEngine();
-        if (config.methods) {
-            try {
-                const methodsFunction = new Function('engine', config.methods);
-                methodsFunction(this.engine);
-            }
-            catch (err) {
-                this.error(err);
-            }
-        }
-    }
-    RED.nodes.registerType('logic_engine', LogicEngineNode);
+Object.defineProperty(exports, "__esModule", { value: true });
+function default_1(RED) {
     function LogicNode(config) {
         RED.nodes.createNode(this, config);
         this.on('input', (msg, send, done) => {
@@ -101,5 +87,6 @@ module.exports = function (RED) {
                 done();
         });
     }
-    RED.nodes.registerType('jsonlogic', LogicNode);
-};
+    RED.nodes.registerType('logic', LogicNode);
+}
+exports.default = default_1;

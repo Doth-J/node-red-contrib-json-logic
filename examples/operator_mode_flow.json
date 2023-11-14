@@ -57,7 +57,7 @@
     },
     {
         "id": "c0e4e3a8ba597e9e",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Addition",
         "engine": "54d129555b731d34",
@@ -133,7 +133,7 @@
     },
     {
         "id": "0460f79a92f2f72f",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Concatenation",
         "engine": "54d129555b731d34",
@@ -209,7 +209,7 @@
     },
     {
         "id": "d7b98065d899a51d",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Merge",
         "engine": "54d129555b731d34",
@@ -286,7 +286,7 @@
     },
     {
         "id": "c3dbcd7eabbf2e01",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Preserve",
         "engine": "54d129555b731d34",
@@ -318,7 +318,7 @@
     },
     {
         "id": "7c0e396996cb45ef",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Subtraction",
         "engine": "54d129555b731d34",
@@ -339,7 +339,7 @@
     },
     {
         "id": "99893bb359cf1287",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Multiplication",
         "engine": "54d129555b731d34",
@@ -360,7 +360,7 @@
     },
     {
         "id": "ed7ded4f8f5fc2c2",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Division",
         "engine": "54d129555b731d34",
@@ -382,7 +382,7 @@
     },
     {
         "id": "325ad03e20092f86",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Substring",
         "engine": "54d129555b731d34",
@@ -404,7 +404,7 @@
     },
     {
         "id": "5374dfee4c1090b5",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Length",
         "engine": "54d129555b731d34",
@@ -426,7 +426,7 @@
     },
     {
         "id": "386ff61479083b83",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Length",
         "engine": "54d129555b731d34",
@@ -448,7 +448,7 @@
     },
     {
         "id": "c4d6e9506a27f93c",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Get",
         "engine": "54d129555b731d34",
@@ -470,7 +470,7 @@
     },
     {
         "id": "2f30925235af8e21",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Get",
         "engine": "54d129555b731d34",
@@ -492,7 +492,7 @@
     },
     {
         "id": "66bf0a754b774315",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Keys",
         "engine": "54d129555b731d34",
@@ -514,7 +514,7 @@
     },
     {
         "id": "418af9fd9cfb8096",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Modulo",
         "engine": "54d129555b731d34",
@@ -536,7 +536,7 @@
     },
     {
         "id": "1f9eca690ca73cd9",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Maximum",
         "engine": "54d129555b731d34",
@@ -557,7 +557,7 @@
     },
     {
         "id": "7f81999aa5cfc1ef",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "Minimum",
         "engine": "54d129555b731d34",
@@ -578,7 +578,7 @@
     },
     {
         "id": "7c71c9d66278c0ad",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "767213299db591c1",
         "name": "IF",
         "engine": "54d129555b731d34",

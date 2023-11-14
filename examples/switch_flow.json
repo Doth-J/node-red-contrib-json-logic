@@ -1,0 +1,199 @@
+[
+    {
+        "id": "2387f888eed2447a",
+        "type": "tab",
+        "label": "Switcher Node",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "298d28aab35cdce2",
+        "type": "inject",
+        "z": "2387f888eed2447a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"name\":\"John\",\"five\":5,\"ten\":10,\"object\":{\"first\":{\"second\":{\"value\":17}}}}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "41a8322123bc809a"
+            ]
+        ]
+    },
+    {
+        "id": "b3c289ccd0c178d8",
+        "type": "debug",
+        "z": "2387f888eed2447a",
+        "name": "==",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "efaf3c652612efc5",
+        "type": "debug",
+        "z": "2387f888eed2447a",
+        "name": "+",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4a3c8bf66d32f639",
+        "type": "debug",
+        "z": "2387f888eed2447a",
+        "name": "custom",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "41a8322123bc809a",
+        "type": "logic_switcher",
+        "z": "2387f888eed2447a",
+        "name": "",
+        "engine": "54d129555b731d34",
+        "checkpoints": true,
+        "block": false,
+        "data": "payload",
+        "dataType": "msg",
+        "operations": [
+            {
+                "op": "{\"==\":[1,1]}",
+                "tp": "json"
+            },
+            {
+                "op": "{\"+\":[{\"var\":\"object.first.second.value\"},10]}",
+                "tp": "json"
+            },
+            {
+                "op": "{\"greet\":{\"var\":\"name\"}}",
+                "tp": "json"
+            },
+            {
+                "op": "rule",
+                "tp": "flow"
+            }
+        ],
+        "outputs": 4,
+        "x": 360,
+        "y": 220,
+        "wires": [
+            [
+                "b3c289ccd0c178d8"
+            ],
+            [
+                "efaf3c652612efc5"
+            ],
+            [
+                "4a3c8bf66d32f639"
+            ],
+            [
+                "5ca2d701b1d0ba29"
+            ]
+        ]
+    },
+    {
+        "id": "a077083deb291905",
+        "type": "inject",
+        "z": "2387f888eed2447a",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "f352560bfb4a5f27"
+            ]
+        ]
+    },
+    {
+        "id": "f352560bfb4a5f27",
+        "type": "change",
+        "z": "2387f888eed2447a",
+        "name": "Set Flow Var",
+        "rules": [
+            {
+                "t": "set",
+                "p": "rule",
+                "pt": "flow",
+                "to": "{\"==\":[{\"var\":\"ten\"},10]}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ca2d701b1d0ba29",
+        "type": "debug",
+        "z": "2387f888eed2447a",
+        "name": "flow",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "54d129555b731d34",
+        "type": "logic_engine",
+        "name": "",
+        "methods": "engine.addMethod(\"greet\",(name)=>{\n    return \"Hello there \"+name+\"!\"\n})"
+    }
+]

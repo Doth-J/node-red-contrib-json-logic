@@ -1,0 +1,182 @@
+<script type="text/javascript" id="node-logic_switcher">
+    RED.nodes.registerType('logic_switcher',{
+        category:'function',
+        color:'#008ECC',
+        icon:'switcher.svg',
+        inputs:1,
+        inputLabels: "data",
+        paletteLabel:"switcher",
+        outputs:1,
+        outputLabels: function(index){
+            let outputLabel = "";
+            const operation = this.operations[index];
+            if(operation.tp == "json"){
+                const op = Object.keys(JSON.parse(operation.op))[0];
+                outputLabel += op
+            }else{
+                outputLabel += operation.tp+"."+operation.op
+            }
+            return outputLabel;
+        },
+        defaults: {
+            name: {value:''},
+            engine: {value:"", type:"logic_engine"},
+            checkpoints: {value:false},
+            block: {value:false},
+            data: {value:'payload',required:true,validate: RED.validators.typedInput("dataType", false)},
+            dataType: {value:'msg'},
+            operations:{value:[{op:'{"==":[1,1]}',tp:"str"}]},
+            outputs:{value:1}
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function(){
+            const currentOutputs = $("#node-input-outputs").val();
+            $("#node-input-data").typedInput({
+                types: ["msg","flow","global"],
+                typeField: "#node-input-dataType"
+            })
+            $("#node-input-operations-container")
+            .editableList({
+                height:335,
+                addItem:function(container,index,data){
+                    container.css({
+                        padding:"2px",
+                        display:"flex",
+                        "align-items":"center"
+                    });
+                    if(!data.hasOwnProperty("o")){
+                        data.o = {}
+                        data.o.op = "{}";
+                        data.o.tp = "json";
+                    }
+                    if (!data.hasOwnProperty('i')) {
+                        data._i = Math.floor((0x99999-0x10000)*Math.random()).toString();
+                    }
+                    const row = $('<div></div>',{style:"flex-grow:1;display:flex"}).appendTo(container);
+                    const input = $('<input/>', {
+                        type: "text",
+                        id:"node-input-operation-"+index,
+                        style: "width:90%;margin-right:5px",
+                        value: data.o.op || "{}"
+                    })
+                    const checkOperationType = (index,operationValue,operationType) => {
+                        const operationTypeIcon = $("#operation-type-"+index);
+                        if(operationValue && operationType == "json"){
+                            switch(operationValue){
+                                case "!==":
+                                case "===":
+                                case "!=":
+                                case "==":
+                                case ">=":
+                                case "<=":
+                                case ">":
+                                case "<":
+                                case "!":
+                                case "!!":
+                                case "and":
+                                case "or":
+                                    operationTypeIcon.removeClass()
+                                    operationTypeIcon.attr("title","Rule")
+                                    operationTypeIcon.addClass("fa fa-check-circle")
+                                    break;
+                                default:
+                                    operationTypeIcon.removeClass()
+                                    operationTypeIcon.attr("title","Operator")
+                                    operationTypeIcon.addClass("fa fa-plus-circle")
+                                    break;
+                                }
+                        }else{
+                            operationTypeIcon.removeClass()
+                        }
+                    }
+                     input.appendTo(row).typedInput({
+                        default: data.o.tp,
+                        types: ['json', 'msg', 'flow', 'global', 'env'],
+                        typeField: function(value) {
+                            return $('<input/>', {
+                                type: 'hidden',
+                                value: value || 'json'
+                            });
+                        }
+                    });
+                    $('<div/>', {
+                        style: 'width:10%;margin-right:auto;display:flex;align-items:center;gap:5px'
+                    }).append('<i id="operation-type-'+index+'"></i> <code class="node-input-operations-index"> &#8594; '+(index+1)+ '</code></div>')
+                    .appendTo(row);
+                    checkOperationType(index,Object.keys(JSON.parse(data.o.op))[0],data.o.tp)
+                    input.on("change",(event)=>checkOperationType(index,Object.keys(JSON.parse(event.target.defaultValue))[0],$("#node-input-operation-"+index).typedInput('type')))
+                },
+                addButton:"logic",
+                scrollOnAdd: true,
+                removable: true
+            });
+            for (let i=0;i<this.operations.length;i++) {
+                $("#node-input-operations-container").editableList('addItem',{o:this.operations[i],i:i});
+            }
+        },
+        oneditsave: function() {
+            let operationsData = [];
+            const operations  = $("#node-input-operations-container").editableList('items') 
+            operations.each(function(i) {
+                const op = $("#node-input-operation-"+i).val();
+                const tp = $("#node-input-operation-"+i).typedInput('type')
+                operationsData.push({op,tp});
+            });
+            this.operations = operationsData;
+            $("#node-input-outputs").val(operationsData.length);
+        },
+        label: function(){
+            return this.name || "switcher"
+        }
+    });
+</script>
+<script type="text/html" data-template-name="logic_switcher">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name: </label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-engine"><i class="fa fa-gear"></i> Engine: </label>
+        <input type="text" id="node-input-engine" placeholder="Engine">
+    </div>
+    <div class="form-row">
+        <label for="node-input-data"><i class="fa fa-dot-circle-o"></i> Data:</label>
+        <input type="text" id="node-input-data">
+        <input type="hidden" id="node-input-dataType">
+    </div>
+    <div class="form-row node-input-operations-container-row">
+        <input type="hidden" id="node-input-outputs">
+        <ol id="node-input-operations-container"></ol>
+    </div>
+    <div class="form-row" style="display:flex;width:100%;gap:5px;">
+        <div style="display:flex;width:50%;align-items:start;gap:5px">
+            <input style="width: auto;" type="checkbox" id="node-input-checkpoints">
+            <label style="width: auto;" for="node-input-checkpoints"><i class="fa fa-flag"></i> Create checkpoints.</label>
+        </div>
+        <div style="display:flex;width:auto;align-items:start;gap:5px;margin-left: auto;">
+            <label style="width: auto;" for="node-input-block"><i class="fa fa-stop"></i> Block <code>false</code> operations.</label>
+            <input style="width: auto;" type="checkbox" id="node-input-block">
+        </div>
+    </div>
+</script>
+
+<script type="text/html" data-help-name="logic_switcher">
+    <p>Logic Switcher Node-RED node</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">json</span>
+    </dt>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+    <dt>payload
+        <span class="property-type">json</span>
+    </dt>
+    <dt>checkpoints
+        <span class="property-type">array[]</span>
+    </dt>
+    <h3>Details</h3>
+    <p>This node implements json-logic for creating switch rules and operations.</p>
+</script>

@@ -1,0 +1,56 @@
+<script type="text/javascript" id="node-logic_engine">
+    RED.nodes.registerType('logic_engine',{
+        category: 'config',
+        defaults: {
+            name:{value:""},
+            methods:{value:""},
+        },
+        oneditprepare:()=>{
+            this.editor = RED.editor.createEditor({
+                id: 'node-input-methods-editor',
+                mode: 'ace/mode/nrjavascript',
+                value: $("#node-config-input-methods").val(),
+            });
+            $("#node-input-methods-editor").css('height', '375px');
+            editor.resize();
+            editor.getSession().on('change', function(){
+                $("#node-config-input-methods").val(editor.getSession().getValue());
+            });
+        },
+        oneditsave: function() {
+            $("#node-config-input-methods").val(this.editor.getValue());
+            this.editor.destroy();
+            delete this.editor;
+        },
+        oneditcancel: function() {
+            this.editor.destroy();
+            delete this.editor;
+        },
+        label: function() {
+            return this.name || "LogicEngine"
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="logic_engine">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> Name: </label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <div style="display:flex;align-items:start;gap:5px">
+            <label for="node-config-input-methods" style="width: auto;"><i class="fa fa-plus-circle"></i> Methods:</label>
+            <input type="hidden" id="node-config-input-methods">
+        </div>
+        <div id="methods" style="width: 100%; display: flex;flex-direction: column;gap: 5px;">
+            <a target="_blank" href="https://jessemitchell.me/json-logic-engine/docs/methods" style="display:flex;background-color: #011627;border-radius:5px;padding:1px">
+                <div style="padding-left:2px;display:flex;width:62px;justify-content:center;font-variant-numeric:tabular-nums;color:#d6deeb">0</div>
+                <div><code><span style="color: rgb(127, 219, 202);">const</span> <span style="color:#d6deeb">engine</span> <span style="color:rgb(127, 219, 202)">= new</span> <span style="color: rgb(255, 203, 139);">LogicEngine</span><span style="color: rgb(199, 146, 234);">()</span></code></div>
+            </a>
+            <div class="node-text-editor" id="node-input-methods-editor"></div>
+            <div id="node-config-input-methods-hint" style="padding:2px;font-size:10px;width:100%;font-style: italic;">
+                <i class="fa fa-question-circle-o"></i> Access the <b>LogicEngine</b> instance via the <code>engine</code> variable.
+            </div>
+        </div>
+    </div>
+</script>

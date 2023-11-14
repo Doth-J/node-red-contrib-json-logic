@@ -30,7 +30,7 @@ The logic node provides two modes of usage:
   
   ![ConfigEngine](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/config_engine.png?raw=true) 
 
-The config node is implemented to share the engine instance between logic nodes. This way your logic nodes can access the same `Logic Engine` instance across your flows for the rules and operations they perform.
+The config node is implemented to share the engine instance between logic nodes. This way your `logic` and `switcher` nodes can access the same `Logic Engine` instance across your flows for the rules and operations they perform.
 
 ### Adding Methods 🔩
 The configuration node allows you to set the name (*optional*) and allows you to add new methods to the `Logic Engine`. The editor inside the config node gives you access to an **engine** variable that contains the instance of the `Logic Engine`.  
@@ -46,18 +46,28 @@ The rules used by the logic node must be in `JSON` format and they can be set by
     
   ![RuleModeProperties](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/rule_prop.png?raw=true)
 
-Same is true for when using the logic node in the `operator` mode. The `Rule(s)` property transforms to `Operation(s)` property and a **non** logical operation is expected in the input field. 
+Same is true when using the logic node in the `operator` mode. The `Rule(s)` property transforms to `Operation(s)` property and a **non** logical operation is expected in the input field. 
   
   ![OperatorModeProperties](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_props.png?raw=true)
 
-  ## Check please? 🧾
-  In the edit dialog of the logic node you can enable the `Checkpoint` property, this sets the node to append a checkpoint event to the `msg.checkpoints` array about the logical rule or operation performed.
-  Optionally you can add a message on the checkpoint event in the input shown:
+## Switcher Node 📅
+The `switcher` node utilizes the [json-logic-engine](https://jessemitchell.me/json-logic-engine/) to evaluate multiple operations on the data target object. The node can act as a complex data switch, if given rules to evaluate, or as on-the-fly operator for incoming data. Similarly to the `logic` node, the `switcher` node can be configured with a `Logic Engine` instance, the target data to inject to the engine and  a list of operations to perform to those target data.
+
+ ![SwitcherNode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/switcher.png?raw=true)
+ 
+## Using the Switcher Node 🔧
+In the `switcher`, each new logic operation will create a new output for the node that will be used to send the operation result in the `msg.result` property. The node forwards any `msg` properties as received, but it will change the `result` and `checkpoints` (if enabled) properties of the `msg`. You can configure the node to append a checkpoint report to the `msg` object and also block the forwarding of an output if it has evaluated to a **false** (i.e. used a logic operation).
+
+ ![SwitcherNodeProps](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/switcher_props.png?raw=true)
+
+## Check please? 🧾
+In the edit dialog of the both nodes you can enable the `Checkpoint` property, this sets the node to append a checkpoint event to the `msg.checkpoints` array about the logical rule or operation performed.
+Optionally you can add a message on the checkpoint event in the input shown:
 
   ![CheckpointProperty](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/checkpoint_edit.png?raw=true)
 
-  * Operator Mode with Checkpoint:  
-  ```json
+* Operator Mode with Checkpoint:  
+```json
 {
     "_msgid":"2a7c3f3134e4ed25",
     "payload":{
@@ -83,7 +93,7 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
         }
     ]
 }
-  ```
+```
 * Rule Mode with Checkpoint:
 ```json
 {
@@ -111,5 +121,48 @@ Same is true for when using the logic node in the `operator` mode. The `Rule(s)`
     ]
 }
 ```
+  ![SwitcherCheckpointProperty](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/switcher_checkpoint.png?raw=true)
+
+* Switcher with Checkpoint:
+```json
+{
+  "result":true,
+  "_msgid":"5cbb1a22e67286c2",
+  "payload":{
+    "name":"John",
+    "five":5,
+    "ten":10,
+    "object":{
+      "first":{
+        "second":{
+          "value":17
+          }
+        }
+      }
+    },
+  "checkpoints":[
+    {
+      "operation":{
+        "==":[1,1]
+        },
+      "result":true,
+      "id":"41a8322123bc809a",
+      "engine":"54d129555b731d34",
+      "data":"msg.payload",
+      "timestamp":"Tue Nov 14 2023 23:11:53 GMT+0200 (Eastern European Standard Time)"
+      }
+  ]}
+```
 
   The `msg.checkpoints` is an array that keeps track of the rule(s) / operation(s) performed, the evaluated result, the logic node's id, mode and engine id, an optional message and a timestamp for the checkpoint event. Each logic node can be configured to append checkpoint event information about the rule(s) /operation(s) done and will push these events into the `msg.checkpoints` array.   
+
+
+## Switcher Node 📅
+The `switcher` node utilizes the [json-logic-engine](https://jessemitchell.me/json-logic-engine/) to evaluate multiple operations on the data target object. The node can act as a complex data switch, if given rules to evaluate, or as on-the-fly operator for incoming data.
+
+ ![SwitcherNode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/switcher.png?raw=true)
+ 
+## Using the Switcher Node 🔧
+Similarly to the `logic` node, the `switcher` node can be configured with a `Logic Engine` instance, the target data to inject to the engine and  a list of operations to perform to those target data. Each new logic operation will create a new output for the node that will be used to send the operation result in the `msg.result` property. The node forwards any `msg` properties as receives, but it will change the `msg.result` and `msg.checkpoints` (if enabled) properties. You can configure the node to append a checkpoint report to the `msg` object and also block the forwarding of an output if it has evaluated to a **false** (i.e. used a logic operation).
+
+ ![SwitcherNodeProps](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/switcher_props.png?raw=true)

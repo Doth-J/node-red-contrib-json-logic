@@ -51,7 +51,7 @@
     },
     {
         "id": "00a501c3b45cb124",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Greater Than",
         "engine": "54d129555b731d34",
@@ -76,7 +76,7 @@
     },
     {
         "id": "dd8993c812993c9a",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Equals",
         "engine": "54d129555b731d34",
@@ -101,7 +101,7 @@
     },
     {
         "id": "51390b7e137626cf",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Less Than",
         "engine": "54d129555b731d34",
@@ -160,7 +160,7 @@
     },
     {
         "id": "c1eadfa4ba55cf4e",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Not (!)",
         "engine": "54d129555b731d34",
@@ -185,7 +185,7 @@
     },
     {
         "id": "f08fd84227243d51",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "toBoolean (!!)",
         "engine": "54d129555b731d34",
@@ -210,7 +210,7 @@
     },
     {
         "id": "7a78f5f187152ee1",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Not Equals",
         "engine": "54d129555b731d34",
@@ -235,7 +235,7 @@
     },
     {
         "id": "f30975266373e11a",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Greater Than Equals",
         "engine": "54d129555b731d34",
@@ -260,7 +260,7 @@
     },
     {
         "id": "ae31a0ded5c36e37",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Less Than Equals",
         "engine": "54d129555b731d34",
@@ -320,7 +320,7 @@
     },
     {
         "id": "2947c767695bdff0",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Includes",
         "engine": "54d129555b731d34",
@@ -414,7 +414,7 @@
     },
     {
         "id": "a04a1bc3d126852c",
-        "type": "jsonlogic",
+        "type": "logic",
         "z": "f2d53c7a4fece389",
         "name": "Includes",
         "engine": "54d129555b731d34",
