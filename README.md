@@ -50,7 +50,7 @@ Same is true when using the logic node in the `operator` mode. The `Rule(s)` pro
   
   ![OperatorModeProperties](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/operator_props.png?raw=true)
 
-## Switcher Node 📅
+## Switcher Node 🧪
 The `switcher` node utilizes the [json-logic-engine](https://jessemitchell.me/json-logic-engine/) to evaluate multiple operations on the data target object. The node can act as a complex data switch, if given rules to evaluate, or as on-the-fly operator for incoming data. Similarly to the `logic` node, the `switcher` node can be configured with a `Logic Engine` instance, the target data to inject to the engine and  a list of operations to perform to those target data.
 
  ![SwitcherNode](https://github.com/Doth-J/node-red-contrib-json-logic/blob/master/docs/switcher.png?raw=true)
